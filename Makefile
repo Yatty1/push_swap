@@ -6,7 +6,7 @@
 #    By: syamada <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/06 21:25:07 by syamada           #+#    #+#              #
-#    Updated: 2018/08/07 20:11:39 by syamada          ###   ########.fr        #
+#    Updated: 2018/08/07 22:03:10 by syamada          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SWAP		:= push_swap
 
 CHECKERSRC	:= checker.c
 SWAPSRC		:= push_swap.c
-OTHERSRCS	:= create_stack.c stack_funcs.c stack_helpers.c \
+OTHERSRCS	:= create_stack.c stack_funcs.c stack_helpers.c checker_helpers.c \
 				swap_funcs.c push_funcs.c rotate_funcs.c rev_rotate_funcs.c
 
 LIBCDIR		:= libc_funcs
@@ -91,7 +91,7 @@ COM_STR   	:= "Compiling"
 all: $(CHECKER) $(SWAP)
 
 $(CHECKER): $(LIB)
-	$(CC) $(DEBUG) -o $@ $(OTHERSRCS) $(CFLAG) $(CHECKERSRC) $(LIB) -I.
+	$(CC) -o $@ $(OTHERSRCS) $(CFLAG) $(CHECKERSRC) $(LIB) -I.
 
 $(SWAP): $(LIB)
 	$(CC) -o $@ $(OTHERSRCS) $(CFLAG) push_swap.c $(LIB) -I.

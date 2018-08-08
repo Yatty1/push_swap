@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 14:23:23 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/07 20:04:42 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/07 21:24:15 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		ft_stackdel(t_stack **stack)
 	t_stack	*st;
 	t_stack	*n_st;
 
-	if (stack == NULL)
+	if (!stack || !*stack)
 		return ;
 	st = *stack;
 	while (st)
@@ -51,6 +51,7 @@ int			ft_pop(t_stack **stack)
 	tmp = *stack;
 	*stack = tmp->next;
 	free(tmp);
+	tmp = NULL;
 	return (pop);
 }
 
