@@ -1,37 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_funcs.c                                       :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/07 16:52:51 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/07 20:45:45 by syamada          ###   ########.fr       */
+/*   Created: 2018/08/07 19:33:32 by syamada           #+#    #+#             */
+/*   Updated: 2018/08/07 20:04:46 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-void		push_a(t_stack **a, t_stack **b)
-{
-	int		num;
-
-	if (!a || !b)
-		return ;
-	if (!*b)
-		return ;
-	num = ft_pop(b);
-	ft_stackpush(a, num);
-}
-
-void		push_b(t_stack **a, t_stack **b)
-{
-	int		num;
-
-	if (!a || !b)
-		return ;
-	if (!*a)
-		return ;
-	num = ft_pop(a);
-	ft_stackpush(b, num);
-}

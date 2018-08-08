@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:47:54 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/07 17:11:08 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/07 20:04:43 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,11 @@ void			ft_stackdel(t_stack **stack);
 void			ft_addstack(t_stack **stack, int num);
 int				ft_searchstack(t_stack *stack, int target);
 void			print_stack(t_stack *stack);
+
+t_stack			*create_stack(t_stack *stack, char **str);
+
+char			**read_instruction(void);
+int				is_valid(char *str);
+
 
 #endif

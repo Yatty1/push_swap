@@ -6,35 +6,16 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 11:10:22 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/07 18:14:48 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/07 20:54:18 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <fcntl.h>
-
-t_stack	*create_stack(t_stack *stack, char *str)
-{
-	int		i;
-	long	num;
-
-	i = 0;
-	while (ft_isdigit(str[i]))
-		i++;
-	num = ft_atol(str);
-	if (str[i] != '\0' || num > 2147483647 || num < -2147483648
-				|| ft_searchstack(stack, num))
-	{
-		if (stack != NULL)
-			ft_stackdel(&stack);
-		return (NULL);
-	}
-	ft_addstack(&stack, (int)num);
-	return (stack);
-}
 
 int		is_valid(char *str)
 {
+	if (str == NULL)
+		return (0);
 	if (ft_strequ("sa", str) || ft_strequ("sb", str) || ft_strequ("ss", str)
 			|| ft_strequ("pa", str) || ft_strequ("pb", str) || ft_strequ("ra", str)
 			|| ft_strequ("rb", str) || ft_strequ("rr", str) || ft_strequ("rra", str)
@@ -43,7 +24,7 @@ int		is_valid(char *str)
 	return (0);
 }
 
-char	**read_stdin(void)
+char	**read_instruction(void)
 {
 	char	*str;
 	char	*input;
@@ -62,40 +43,82 @@ char	**read_stdin(void)
 			return (NULL);
 		}
 	}
-	if (!input || !*input)
+	if (!(two_d = ft_strsplit(input, ',')) || !*input)
+	{
+		ft_strdel(&input);
 		return (NULL);
-	if (!(two_d = ft_strsplit(input, ',')))
-		return (NULL);
+	}
 	ft_strdel(&input);
 	return (two_d);
 }
 
-int		main(int argc, char **argv)
+void	dispatcher(t_stack **a, t_stack **b, char *input)
+{
+	ft_putendl(input);
+	if (ft_strequ("sa", input))
+		swap_a(a, b);
+	else if (ft_strequ("sb", input))
+		swap_b(a, b);
+	else if (ft_strequ("ss", input))
+		swap_ab(a, b);
+	else if (ft_strequ("pa", input))
+		push_a(a, b);
+	else if (ft_strequ("pb", input))
+		push_b(a, b);
+	else if (ft_strequ("ra", input))
+		rotate_a(a, b);
+	else if (ft_strequ("rb", input))
+		rotate_b(a, b);
+	else if (ft_strequ("rr", input))
+		rotate_ab(a, b);
+	else if (ft_strequ("rra", input))
+		rev_rotate_a(a, b);
+	else if (ft_strequ("rrb", input))
+		rev_rotate_b(a, b);
+	else if (ft_strequ("rrr", input))
+		rev_rotate_ab(a, b);
+}
+
+void	check(char **input, t_stack *a)
 {
 	int		i;
+	t_stack *b;
+
+	i = 0;
+	b = NULL;
+	while (input[i])
+		dispatcher(&a, &b, input[i++]);
+	while (a->next)
+	{
+		if (a->data > a->next->data)
+		{
+			ft_putstrerr("KO\n");
+			ft_stackdel(&a);
+			ft_stackdel(&b);
+			ft_strdel(input);//might leak since it's two dimensional
+			exit(-1);
+		}
+		a = a->next;
+	}
+}
+
+int		main(int argc, char **argv)
+{
 	char	**input;
 	t_stack	*stack;
 
-	i = 1;
 	stack = NULL;
 	input = NULL;
 	if (argc == 1)
 		return (0);
-	while (argv[i])
+	stack = create_stack(stack, argv);
+	if (!(input = read_instruction()))
 	{
-		if (!(stack = create_stack(stack, argv[i])))
-		{
-			ft_putstrerr("Error\n");
-			return (0);
-		}
-		i++;
+		ft_putstrerr("Error\n");
+		return (0);
 	}
-	print_stack(stack);
-	input = read_stdin();
-	int j = 0;
-	while (input[j])
-		ft_putendl(input[j++]);
+	check(input, stack);
+	ft_putstr("OK\n");
 	ft_strdel(input);
-	while (1);
 	return (0);
 }
