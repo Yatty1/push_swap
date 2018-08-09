@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 11:10:22 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/07 22:02:44 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/09 15:23:07 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,7 @@ int		main(int argc, char **argv)
 		return (0);
 	stack = create_stack(stack, argv);
 	if (!(input = read_instruction()))
-	{
-		ft_putstrerr("Error\n");
-		return (0);
-	}
+		error_exit();
 	check(input, stack);
 	ft_putstr("OK\n");
 	free_input(input);

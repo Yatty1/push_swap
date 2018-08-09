@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_errorexit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/07 15:43:21 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/09 13:32:36 by syamada          ###   ########.fr       */
+/*   Created: 2018/08/09 15:20:01 by syamada           #+#    #+#             */
+/*   Updated: 2018/08/09 15:20:49 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		main(int argc, char **argv)
+void	error_exit(void)
 {
-	t_stack	*stack;
-
-	stack = NULL;
-	stack = create_stack(stack, argv);
-	print_stack(stack);
-	return (0);
+	ft_putstrerr("Error\n");
+	exit(-1);
 }
