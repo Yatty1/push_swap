@@ -6,15 +6,15 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:47:54 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/09 15:21:49 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/09 16:26:48 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "libft/includes/libft.h"
-# include "libft/includes/get_next_line.h"
-# include "libft/includes/ft_printf.h"
+# include "../libft/includes/libft.h"
+# include "../libft/includes/get_next_line.h"
+# include "../libft/includes/ft_printf.h"
 # include <stdlib.h>
 # include <unistd.h>
 
