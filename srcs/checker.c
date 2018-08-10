@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 11:10:22 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/09 16:11:23 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/09 21:48:26 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	dispatcher(t_stack **a, t_stack **b, char *input)
 		rev_rotate_b(a, b);
 	else if (ft_strequ("rrr", input))
 		rev_rotate_ab(a, b);
+	stack_status(*a, *b, input);
 }
 
 void	check(char **input, t_stack *a)

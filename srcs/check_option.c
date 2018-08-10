@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_stack.c                                     :+:      :+:    :+:   */
+/*   check_option.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/07 19:36:26 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/10 12:59:11 by syamada          ###   ########.fr       */
+/*   Created: 2018/08/10 12:40:44 by syamada           #+#    #+#             */
+/*   Updated: 2018/08/10 12:59:45 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*create_stack(t_stack *stack, char **str)
+char	**check_option(int argc, char **argv, t_option *option)
 {
 	int		i;
-	int		j;
-	long	num;
 
 	i = 1;
-	while (str[i])
-	{
-		j = 0;
-		if (str[i][j] == '-')
-			j++;
-		while (ft_isdigit(str[i][j]))
-			j++;
-		num = ft_atol(str[i]);
-		if (str[i][j] != '\0' || num > 2147483647 || num < -2147483648
-					|| ft_searchstack(stack, num))
-		{
-			if (stack != NULL)
-				ft_stackdel(&stack);
-			error_exit();
-		}
-		ft_addstack(&stack, (int)num);
-		i++;
-	}
-	return (stack);
+	option->v = 0;
+	option->c = 0;
+	if (argc < 2)
+		return (argv);
+	if (ft_strequ("-v", argv[i]))
+		option->v = 1;
+	else if (ft_strequ("-c", argv[i]))
+		option->c = 1;
+	if (option->v || option->c)
+		argv += 1;
+	return (argv);
 }

@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_stack.c                                     :+:      :+:    :+:   */
+/*   debug_mode.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/07 19:36:26 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/10 12:59:11 by syamada          ###   ########.fr       */
+/*   Created: 2018/08/09 17:04:49 by syamada           #+#    #+#             */
+/*   Updated: 2018/08/09 17:18:30 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*create_stack(t_stack *stack, char **str)
+void		stack_status(t_stack *a, t_stack *b, char *inst)
 {
-	int		i;
-	int		j;
-	long	num;
-
-	i = 1;
-	while (str[i])
+	ft_putendl(inst);
+	ft_putstr("A[ ");
+	while (a)
 	{
-		j = 0;
-		if (str[i][j] == '-')
-			j++;
-		while (ft_isdigit(str[i][j]))
-			j++;
-		num = ft_atol(str[i]);
-		if (str[i][j] != '\0' || num > 2147483647 || num < -2147483648
-					|| ft_searchstack(stack, num))
-		{
-			if (stack != NULL)
-				ft_stackdel(&stack);
-			error_exit();
-		}
-		ft_addstack(&stack, (int)num);
-		i++;
+		ft_printf("%d ", a->data);
+		a = a->next;
 	}
-	return (stack);
+	ft_putstr("]\n");
+	ft_putstr("B[ ");
+	while (b)
+	{
+		ft_printf("%d ", b->data);
+		b = b->next;
+	}
+	ft_putstr("]\n");
 }
