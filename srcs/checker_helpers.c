@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 21:08:49 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/09 15:22:03 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/10 13:30:49 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ int		is_valid(char *str)
 {
 	if (str == NULL)
 		return (0);
-	if (ft_strequ("sa", str) || ft_strequ("sb", str) || ft_strequ("ss", str)
-			|| ft_strequ("pa", str) || ft_strequ("pb", str) || ft_strequ("ra", str)
-			|| ft_strequ("rb", str) || ft_strequ("rr", str) || ft_strequ("rra", str)
-			|| ft_strequ("rrb", str) || ft_strequ("rrr", str))
+	if (ft_strequ("sa", str) || ft_strequ("sb", str)
+			|| ft_strequ("ss", str) || ft_strequ("pa", str)
+			|| ft_strequ("pb", str) || ft_strequ("ra", str)
+			|| ft_strequ("rb", str) || ft_strequ("rr", str)
+			|| ft_strequ("rra", str) || ft_strequ("rrb", str)
+			|| ft_strequ("rrr", str))
 		return (1);
 	return (0);
 }

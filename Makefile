@@ -6,7 +6,7 @@
 #    By: syamada <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/06 21:25:07 by syamada           #+#    #+#              #
-#    Updated: 2018/08/09 17:14:35 by syamada          ###   ########.fr        #
+#    Updated: 2018/08/10 13:36:44 by syamada          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ OPSRCS		:= $(addprefix $(OPSDIR)/, swap_funcs.c push_funcs.c rotate_funcs.c \
 					rev_rotate_funcs.c)
 
 OTHERSRCS	:= $(addprefix $(SRCDIR)/, create_stack.c stack_funcs.c stack_helpers.c \
-					checker_helpers.c ft_errorexit.c stack_status.c)
+					checker_helpers.c ft_errorexit.c stack_status.c check_option.c)
 
 #colors
 COM_COLOR	:= \033[0;34m
@@ -56,10 +56,11 @@ $(LIBDIR)/$(LIB):
 	@make -C $(LIBDIR)
 
 .PHONY: clean
+clean:
 	@make -C $(LIBDIR) clean
 
 .PHONY: fclean
-fclean: clean
+fclean:
 	@make -C $(LIBDIR) fclean
 	@printf "%b" "$(NO_COLOR)Removing $(CHECKER) $(SWAP)...\n"
 	@rm -f $(CHECKER)

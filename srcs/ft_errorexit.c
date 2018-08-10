@@ -6,14 +6,17 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 15:20:01 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/09 15:20:49 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/10 13:41:21 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	error_exit(void)
+void	error_exit(t_option option)
 {
-	ft_putstrerr("Error\n");
+	if (option.c)
+		ft_putstrerr("\033[1;31mError\n");
+	else
+		ft_putstrerr("Error\n");
 	exit(-1);
 }

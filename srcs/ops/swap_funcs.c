@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 16:29:01 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/09 15:19:24 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/10 13:31:47 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,3 @@ void		swap_ab(t_stack **a, t_stack **b)
 	swap_a(a, b);
 	swap_b(a, b);
 }
-/*
-int		main()
-{
-	t_stack *a;
-	t_stack *b;
-	t_stack **as;
-	t_stack **bs;
-
-	a = ft_stacknew(10);
-	a->next = ft_stacknew(20);
-	as = &a;
-	bs = &b;
-	swap_a(as, bs);
-	while (a)
-	{
-		ft_printf("data: %d\n", a->data);
-		a = a->next;
-	}
-}
-*/

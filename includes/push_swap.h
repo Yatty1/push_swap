@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:47:54 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/10 12:51:04 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/10 13:34:02 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,12 @@ int				ft_searchstack(t_stack *stack, int target);
 void			print_stack(t_stack *stack);
 void			stack_status(t_stack *a, t_stack *b, char *inst);
 
-t_stack			*create_stack(t_stack *stack, char **str);
-char			**check_option(int argc, char **argv, t_option *option);
-void			error_exit(void);
+t_stack			*create_stack(t_stack *stack, char **str, t_option option);
+void			error_exit(t_option option);
 
+char			**check_option(int argc, char **argv, t_option *option);
+void			dispatcher(t_stack **a, t_stack **b, char *input, t_option option);
+void			checke(char **input, t_stack *a, t_option option);
 char			**read_instruction(void);
 int				is_valid(char *str);
 void			free_input(char **input);

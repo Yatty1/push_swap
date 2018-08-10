@@ -6,13 +6,13 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 19:36:26 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/10 12:59:11 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/10 13:18:00 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*create_stack(t_stack *stack, char **str)
+t_stack	*create_stack(t_stack *stack, char **str, t_option option)
 {
 	int		i;
 	int		j;
@@ -32,7 +32,7 @@ t_stack	*create_stack(t_stack *stack, char **str)
 		{
 			if (stack != NULL)
 				ft_stackdel(&stack);
-			error_exit();
+			return (NULL);
 		}
 		ft_addstack(&stack, (int)num);
 		i++;
