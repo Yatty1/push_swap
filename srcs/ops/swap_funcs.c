@@ -1,51 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rev_rotate_funcs.c                                 :+:      :+:    :+:   */
+/*   swap_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/07 17:03:32 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/07 21:25:11 by syamada          ###   ########.fr       */
+/*   Created: 2018/08/07 16:29:01 by syamada           #+#    #+#             */
+/*   Updated: 2018/08/11 11:57:17 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		rev_rotate_a(t_stack **a, t_stack **b)
+void		swap_a(t_stack **a, t_stack **b, t_oplist **oplist)
 {
-	int		num;
-	t_stack	*stack;
+	int		tmp;
 
 	if (!a || !b || !*a)
 		return ;
 	if (!(*a)->next)
 		return ;
-	stack = *a;
-	while (stack->next)
-		stack = stack->next;
-	num = stack->data;
-	ft_stackpush(a, num);
+	tmp = (*a)->data;
+	(*a)->data = (*a)->next->data;
+	(*a)->next->data = tmp;
+	add_oplist(oplist, SA);
 }
 
-void		rev_rotate_b(t_stack **a, t_stack **b)
+void		swap_b(t_stack **a, t_stack **b, t_oplist **oplist)
 {
-	int		num;
-	t_stack	*stack;
+	int		tmp;
 
 	if (!a || !b || !*b)
 		return ;
 	if (!(*b)->next)
 		return ;
-	stack = *b;
-	while (stack->next)
-		stack = stack->next;
-	num = stack->data;
-	ft_stackpush(b, num);
+	tmp = (*b)->data;
+	(*b)->data = (*b)->next->data;
+	(*b)->next->data = tmp;
+	add_oplist(oplist, SB);
 }
 
-void		rev_rotate_ab(t_stack **a, t_stack **b)
+void		swap_ab(t_stack **a, t_stack **b, t_oplist **oplist)
 {
-	rev_rotate_a(a, b);
-	rev_rotate_b(a, b);
+	swap_a(a, b, NULL);
+	swap_b(a, b, NULL);
+	add_oplist(oplist, SS);
 }

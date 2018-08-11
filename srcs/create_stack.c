@@ -6,13 +6,13 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 19:36:26 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/07 19:37:37 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/10 13:18:00 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*create_stack(t_stack *stack, char **str)
+t_stack	*create_stack(t_stack *stack, char **str, t_option option)
 {
 	int		i;
 	int		j;
@@ -22,6 +22,8 @@ t_stack	*create_stack(t_stack *stack, char **str)
 	while (str[i])
 	{
 		j = 0;
+		if (str[i][j] == '-')
+			j++;
 		while (ft_isdigit(str[i][j]))
 			j++;
 		num = ft_atol(str[i]);
@@ -30,8 +32,7 @@ t_stack	*create_stack(t_stack *stack, char **str)
 		{
 			if (stack != NULL)
 				ft_stackdel(&stack);
-			ft_putstrerr("Error\n");
-			exit(-1);
+			return (NULL);
 		}
 		ft_addstack(&stack, (int)num);
 		i++;
