@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:47:54 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/11 11:55:40 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/11 15:03:16 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ t_oplist		*sort(t_stack *a);
 
 char			**check_option(int argc, char **argv, t_option *option);
 void			dispatcher(t_stack **a, t_stack **b, char *input, t_option option);
-void			checke(char **input, t_stack *a, t_option option);
+void			check(char **input, t_stack *a, t_option option);
 char			**read_instruction(void);
 int				is_valid(char *str);
 void			free_input(char **input);
