@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:38:14 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/10 13:31:17 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/11 08:00:36 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ int			ft_searchstack(t_stack *stack, int target)
 		stack = stack->next;
 	}
 	return (0);
+}
+
+int			is_empty(t_stack *stack)
+{
+	return (stack ? 1 : 0);
 }
 
 void		print_stack(t_stack *stack)
