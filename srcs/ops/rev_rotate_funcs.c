@@ -16,6 +16,7 @@ void		rev_rotate_a(t_stack **a, t_stack **b)
 {
 	int		num;
 	t_stack	*stack;
+	t_stack	*pre;
 
 	if (!a || !b || !*a)
 		return ;
@@ -23,8 +24,13 @@ void		rev_rotate_a(t_stack **a, t_stack **b)
 		return ;
 	stack = *a;
 	while (stack->next)
+	{
+		pre = stack;
 		stack = stack->next;
+	}
 	num = stack->data;
+	free(stack);
+	pre->next = NULL;
 	ft_stackpush(a, num);
 }
 
@@ -32,6 +38,7 @@ void		rev_rotate_b(t_stack **a, t_stack **b)
 {
 	int		num;
 	t_stack	*stack;
+	t_stack *pre;
 
 	if (!a || !b || !*b)
 		return ;
@@ -39,8 +46,13 @@ void		rev_rotate_b(t_stack **a, t_stack **b)
 		return ;
 	stack = *b;
 	while (stack->next)
+	{
+		pre = stack;
 		stack = stack->next;
+	}
 	num = stack->data;
+	free(stack);
+	pre->next = NULL;
 	ft_stackpush(b, num);
 }
 

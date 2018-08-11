@@ -59,6 +59,7 @@ void	check(char **input, t_stack *a, t_option option)
 			ft_stackdel(&b);
 			free_input(input);
 			option.c ? ft_putstrerr("\033[1;33mKO\n") : ft_putstrerr("KO\n");
+			while (1);
 			exit(-1);
 		}
 		sorted = sorted->next;
