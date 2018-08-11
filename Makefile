@@ -6,7 +6,7 @@
 #    By: syamada <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/06 21:25:07 by syamada           #+#    #+#              #
-#    Updated: 2018/08/10 13:36:44 by syamada          ###   ########.fr        #
+#    Updated: 2018/08/11 10:48:40 by syamada          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ OPSRCS		:= $(addprefix $(OPSDIR)/, swap_funcs.c push_funcs.c rotate_funcs.c \
 					rev_rotate_funcs.c)
 
 OTHERSRCS	:= $(addprefix $(SRCDIR)/, create_stack.c stack_funcs.c stack_helpers.c \
-					checker_helpers.c ft_errorexit.c stack_status.c check_option.c)
+					checker_helpers.c ft_errorexit.c stack_status.c check_option.c \
+					oplist_funcs.c sort_stack.c)
 
 #colors
 COM_COLOR	:= \033[0;34m
@@ -44,12 +45,12 @@ all: $(CHECKER) $(SWAP)
 
 $(CHECKER): $(LIBDIR) $(LIBDIR)/$(LIB)
 	@printf "%b" "$(NO_COLOR)Creating $(EXEC_COLOR)$@"
-	@$(CC) -o $@ $(CFLAG) $(CHECKERSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
+	@$(CC) -o $@ $(CFLAG) $(DEBUG) $(CHECKERSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
 	@printf "%b" " ✔\n"
 
 $(SWAP): $(LIBDIR) $(LIBDIR)/$(LIB)
 	@printf "%b" "$(NO_COLOR)Creating $(EXEC_COLOR)$@"
-	@$(CC) -o $@ $(CFLAG) $(SWAPSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
+	@$(CC) -o $@ $(CFLAG) $(DEBUG) $(SWAPSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
 	@printf "%b" " ✔\n"
 
 $(LIBDIR)/$(LIB):
@@ -69,6 +70,18 @@ fclean:
 
 .PHONY: re
 re: fclean all
+
+.PHONY: qc
+qc:
+	@printf "%b" "Quick recompile for $(CHECKER)\n"
+	@rm -f $(CHECKER)
+	@make $(CHECKER)
+
+.PHONY: qs
+qs:
+	@printf "%b" "Quick recompile for $(SWAP)\n"
+	@rm -f $(SWAP)
+	@make $(SWAP)
 
 .PHONY: rec
 rec: fclean $(CHECKER)

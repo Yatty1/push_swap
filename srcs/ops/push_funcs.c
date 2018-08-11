@@ -6,13 +6,13 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 16:52:51 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/07 20:45:45 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/11 11:57:53 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		push_a(t_stack **a, t_stack **b)
+void		push_a(t_stack **a, t_stack **b, t_oplist **oplist)
 {
 	int		num;
 
@@ -22,9 +22,10 @@ void		push_a(t_stack **a, t_stack **b)
 		return ;
 	num = ft_pop(b);
 	ft_stackpush(a, num);
+	add_oplist(oplist, PA);
 }
 
-void		push_b(t_stack **a, t_stack **b)
+void		push_b(t_stack **a, t_stack **b, t_oplist **oplist)
 {
 	int		num;
 
@@ -34,4 +35,5 @@ void		push_b(t_stack **a, t_stack **b)
 		return ;
 	num = ft_pop(a);
 	ft_stackpush(b, num);
+	add_oplist(oplist, PB);
 }

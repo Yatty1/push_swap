@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 11:10:22 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/11 07:58:30 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/11 14:51:09 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,27 @@
 void	dispatcher(t_stack **a, t_stack **b, char *input, t_option option)
 {
 	if (ft_strequ("sa", input))
-		swap_a(a, b);
+		swap_a(a, b, NULL);
 	else if (ft_strequ("sb", input))
-		swap_b(a, b);
+		swap_b(a, b, NULL);
 	else if (ft_strequ("ss", input))
-		swap_ab(a, b);
+		swap_ab(a, b, NULL);
 	else if (ft_strequ("pa", input))
-		push_a(a, b);
+		push_a(a, b, NULL);
 	else if (ft_strequ("pb", input))
-		push_b(a, b);
+		push_b(a, b, NULL);
 	else if (ft_strequ("ra", input))
-		rotate_a(a, b);
+		rotate_a(a, b, NULL);
 	else if (ft_strequ("rb", input))
-		rotate_b(a, b);
+		rotate_b(a, b, NULL);
 	else if (ft_strequ("rr", input))
-		rotate_ab(a, b);
+		rotate_ab(a, b, NULL);
 	else if (ft_strequ("rra", input))
-		rev_rotate_a(a, b);
+		rev_rotate_a(a, b, NULL);
 	else if (ft_strequ("rrb", input))
-		rev_rotate_b(a, b);
+		rev_rotate_b(a, b, NULL);
 	else if (ft_strequ("rrr", input))
-		rev_rotate_ab(a, b);
+		rev_rotate_ab(a, b, NULL);
 	if (option.v)
 		stack_status(*a, *b, input);
 }
@@ -59,7 +59,6 @@ void	check(char **input, t_stack *a, t_option option)
 			ft_stackdel(&b);
 			free_input(input);
 			option.c ? ft_putstrerr("\033[1;33mKO\n") : ft_putstrerr("KO\n");
-			while (1);
 			exit(-1);
 		}
 		sorted = sorted->next;

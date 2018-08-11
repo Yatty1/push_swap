@@ -6,13 +6,13 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 17:03:32 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/07 21:25:11 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/11 11:58:46 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		rev_rotate_a(t_stack **a, t_stack **b)
+void		rev_rotate_a(t_stack **a, t_stack **b, t_oplist **oplist)
 {
 	int		num;
 	t_stack	*stack;
@@ -32,9 +32,10 @@ void		rev_rotate_a(t_stack **a, t_stack **b)
 	free(stack);
 	pre->next = NULL;
 	ft_stackpush(a, num);
+	add_oplist(oplist, RRA);
 }
 
-void		rev_rotate_b(t_stack **a, t_stack **b)
+void		rev_rotate_b(t_stack **a, t_stack **b, t_oplist **oplist)
 {
 	int		num;
 	t_stack	*stack;
@@ -54,10 +55,12 @@ void		rev_rotate_b(t_stack **a, t_stack **b)
 	free(stack);
 	pre->next = NULL;
 	ft_stackpush(b, num);
+	add_oplist(oplist, RRA);
 }
 
-void		rev_rotate_ab(t_stack **a, t_stack **b)
+void		rev_rotate_ab(t_stack **a, t_stack **b, t_oplist **oplist)
 {
-	rev_rotate_a(a, b);
-	rev_rotate_b(a, b);
+	rev_rotate_a(a, b, NULL);
+	rev_rotate_b(a, b, NULL);
+	add_oplist(oplist, RRR);
 }
