@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 08:36:25 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/12 19:58:31 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/12 21:20:43 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_oplist	*bubble_sort(t_stack *a)
 			swap_a(&a, &b, &oplist);
 		rotate_a(&a, &b, &oplist);
 	}
+	ft_stackdel(&a);
 	ft_stackdel(&b);
 	return (oplist);
 }
@@ -76,6 +77,7 @@ t_oplist	*insertion_sort(t_stack *a)
 	}
 	while (!is_stackempty(b))
 		push_a(&a, &b, &oplist);
+	ft_stackdel(&a);
 	ft_stackdel(&b);
 	return (oplist);
 }

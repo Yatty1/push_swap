@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/12 16:29:13 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/12 19:49:43 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/12 21:29:09 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,6 @@ algos		*set_algos(void)
 	return (f);
 }
 
-void		free_algos(algos *f)
-{
-	int		i;
-
-	i = 0;
-	while (i < ALGO_NUM)
-	{
-		free(f[i]);
-		f[i] = NULL;
-		i++;
-	}
-}
-
 t_stack	*copy_stack(t_stack *stack)
 {
 	t_stack		*new;
@@ -73,12 +60,10 @@ t_oplist	*pick_sort_algo(t_stack *stack, t_stack *org, algos *f)
 	i = 0;
 	oplist = f[i++](stack);
 	steps = count_steps(oplist);
-	ft_stackdel(&stack);
 	while (i < ALGO_NUM)
 	{
 		stack = copy_stack(org);
 		tmp_op = f[i](stack);
-		ft_stackdel(&stack);
 		if ((tmp = count_steps(tmp_op)) < steps)
 		{
 			oplistdel(&oplist);
@@ -86,7 +71,7 @@ t_oplist	*pick_sort_algo(t_stack *stack, t_stack *org, algos *f)
 			oplist = tmp_op;
 		}
 		else
-			oplistdel(&oplist);
+			oplistdel(&tmp_op);
 		i++;
 	}
 	return (oplist);
