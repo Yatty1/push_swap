@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 09:47:00 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/12 20:59:37 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/12 22:00:02 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,30 +57,26 @@ void		oplistdel(t_oplist **oplist)
 
 void		print_oplist(t_oplist *oplist)
 {
-	while (oplist)
-	{
-		if (oplist->op == SA)
-			ft_putendl("sa");
-		else if (oplist->op == SB)
-			ft_putendl("sb");
-		else if (oplist->op == SS)
-			ft_putendl("ss");
-		else if (oplist->op == PA)
-			ft_putendl("pa");
-		else if (oplist->op == PB)
-			ft_putendl("pb");
-		else if (oplist->op == RA)
-			ft_putendl("ra");
-		else if (oplist->op == RB)
-			ft_putendl("rb");
-		else if (oplist->op == RR)
-			ft_putendl("rr");
-		else if (oplist->op == RRA)
-			ft_putendl("rra");
-		else if (oplist->op == RRB)
-			ft_putendl("rrb");
-		else if (oplist->op == RRR)
-			ft_putendl("rrr");
-		oplist = oplist->next;
-	}
+	if (oplist->op == SA)
+		ft_putendl("sa");
+	else if (oplist->op == SB)
+		ft_putendl("sb");
+	else if (oplist->op == SS)
+		ft_putendl("ss");
+	else if (oplist->op == PA)
+		ft_putendl("pa");
+	else if (oplist->op == PB)
+		ft_putendl("pb");
+	else if (oplist->op == RA)
+		ft_putendl("ra");
+	else if (oplist->op == RB)
+		ft_putendl("rb");
+	else if (oplist->op == RR)
+		ft_putendl("rr");
+	else if (oplist->op == RRA)
+		ft_putendl("rra");
+	else if (oplist->op == RRB)
+		ft_putendl("rrb");
+	else if (oplist->op == RRR)
+		ft_putendl("rrr");
 }

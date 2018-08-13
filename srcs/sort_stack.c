@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 08:36:25 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/12 21:20:43 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/12 21:51:04 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_oplist	*bubble_sort(t_stack *a)
 
 t_oplist	*insertion_sort(t_stack *a)
 {
-	t_stack 	*b;
+	t_stack		*b;
 	t_oplist	*oplist;
 	int			tmp;
 
