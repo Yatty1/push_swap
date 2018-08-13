@@ -1,41 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_stack.c                                     :+:      :+:    :+:   */
+/*   oplist_helpers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/07 19:36:26 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/12 19:56:51 by syamada          ###   ########.fr       */
+/*   Created: 2018/08/12 17:52:10 by syamada           #+#    #+#             */
+/*   Updated: 2018/08/12 19:32:11 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			create_stack(t_stack **stack, char **str, t_option option)
+int			oplist_len(t_oplist *oplist)
 {
 	int		i;
-	int		j;
-	long	num;
 
-	i = 1;
-	while (str[i])
+	i = 0;
+	while (oplist)
 	{
-		j = 0;
-		if (str[i][j] == '-')
-			j++;
-		while (ft_isdigit(str[i][j]))
-			j++;
-		num = ft_atol(str[i]);
-		if (str[i][j] != '\0' || num > 2147483647 || num < -2147483648
-					|| ft_searchstack(*stack, num))
-		{
-			if (stack != NULL)
-				ft_stackdel(&*stack);
-			return (0);
-		}
-		ft_addstack(stack, (int)num);
+		oplist = oplist->next;
 		i++;
 	}
-	return (1);
+	return (i);
+}
+
+t_oplist	*rev_oplist(t_oplist *oplist)
+{
+	t_oplist	*list;
+	t_op		tmp;
+	int			len;
+	int			i;
+
+	if (!oplist)
+		return (NULL);
+	len = oplist_len(oplist);
+	while (len)
+	{
+		i = 0;
+		list = oplist;
+		while (i < len - 1)
+		{
+			tmp = list->op;
+			list->op = list->next->op;
+			list->next->op = tmp;
+			list = list->next;
+			i++;
+		}
+		len--;
+	}
+	return (oplist);
 }

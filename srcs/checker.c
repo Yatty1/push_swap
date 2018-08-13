@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 11:10:22 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/11 14:51:09 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/12 19:56:03 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int		main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	argv = check_option(argc, argv, &option);
-	if (!(stack = create_stack(stack, argv, option)))
+	if (!create_stack(&stack, argv, option))
 		error_exit(option);
 	if (!(input = read_instruction()))
 		error_exit(option);

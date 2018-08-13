@@ -6,7 +6,7 @@
 #    By: syamada <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/06 21:25:07 by syamada           #+#    #+#              #
-#    Updated: 2018/08/11 10:48:40 by syamada          ###   ########.fr        #
+#    Updated: 2018/08/12 18:02:15 by syamada          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,12 +32,14 @@ OPSRCS		:= $(addprefix $(OPSDIR)/, swap_funcs.c push_funcs.c rotate_funcs.c \
 
 OTHERSRCS	:= $(addprefix $(SRCDIR)/, create_stack.c stack_funcs.c stack_helpers.c \
 					checker_helpers.c ft_errorexit.c stack_status.c check_option.c \
-					oplist_funcs.c sort_stack.c)
+					oplist_funcs.c sort_stack.c sort_helpers.c bubble_helpers.c \
+					optimization.c oplist_helpers.c)
 
 #colors
 COM_COLOR	:= \033[0;34m
 OK_COLOR	:= \033[0;32m
 EXEC_COLOR	:= \033[1;32m
+DEBUG_COLOR	:= \033[0;33m
 NO_COLOR	:= \033[m
 
 .PHONY: all
@@ -45,12 +47,12 @@ all: $(CHECKER) $(SWAP)
 
 $(CHECKER): $(LIBDIR) $(LIBDIR)/$(LIB)
 	@printf "%b" "$(NO_COLOR)Creating $(EXEC_COLOR)$@"
-	@$(CC) -o $@ $(CFLAG) $(DEBUG) $(CHECKERSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
+	@$(CC) -o $@ $(CFLAG) $(CHECKERSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
 	@printf "%b" " ✔\n"
 
 $(SWAP): $(LIBDIR) $(LIBDIR)/$(LIB)
 	@printf "%b" "$(NO_COLOR)Creating $(EXEC_COLOR)$@"
-	@$(CC) -o $@ $(CFLAG) $(DEBUG) $(SWAPSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
+	@$(CC) -o $@ $(CFLAG) $(SWAPSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
 	@printf "%b" " ✔\n"
 
 $(LIBDIR)/$(LIB):
@@ -70,6 +72,30 @@ fclean:
 
 .PHONY: re
 re: fclean all
+
+.PHONY: debug
+debug:
+	@rm -f d$(CHECKER)
+	@rm -f d$(SWAP)
+	@make d$(CHECKER)
+	@make d$(SWAP)
+
+d$(CHECKER): $(LIBDIR) $(LIBDIR)/$(LIB)
+	@printf "%b" "$(DEBUG_COLOR)[DEBUG MODE] $(NO_COLOR)Creating $(EXEC_COLOR)$@"
+	@$(CC) -o $@ $(CFLAG) $(DEBUG) $(CHECKERSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
+	@printf "%b" " ✔\n"
+
+d$(SWAP): $(LIBDIR) $(LIBDIR)/$(LIB)
+	@printf "%b" "$(DEBUG_COLOR)[DEBUG MODE] $(NO_COLOR)Creating $(EXEC_COLOR)$@"
+	@$(CC) -o $@ $(CFLAG) $(DEBUG) $(SWAPSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
+	@printf "%b" " ✔\n"
+
+.PHONY: cleandebug
+cleandebug:
+	@rm -rf d$(CHECKER).dSYM
+	@rm -rf d$(SWAP).dSYM
+	@rm -f d$(CHECKER)
+	@rm -f d$(SWAP)
 
 .PHONY: qc
 qc:
