@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/12 16:29:13 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/12 18:03:02 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/12 19:49:43 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ algos		*set_algos(void)
 {
 	algos	*f;
 
-	f = (algos *)malloc(sizeof(algos) * ALGO_NUM);
+	if (!(f = (algos *)malloc(sizeof(algos) * ALGO_NUM)))
+		return (NULL);
 	f[0] = &insertion_sort;
 	f[1] = &bubble_sort;
 	return (f);
@@ -72,23 +73,21 @@ t_oplist	*pick_sort_algo(t_stack *stack, t_stack *org, algos *f)
 	i = 0;
 	oplist = f[i++](stack);
 	steps = count_steps(oplist);
-//	ft_printf("func %d: %dsetps\n", i, steps);
 	ft_stackdel(&stack);
 	while (i < ALGO_NUM)
 	{
 		stack = copy_stack(org);
 		tmp_op = f[i](stack);
 		ft_stackdel(&stack);
-//		ft_printf("func %d: %dsetps\n", i + 1, count_steps(tmp_op));
 		if ((tmp = count_steps(tmp_op)) < steps)
 		{
 			oplistdel(&oplist);
 			steps = tmp;
 			oplist = tmp_op;
 		}
+		else
+			oplistdel(&oplist);
 		i++;
 	}
-//	ft_printf("%dsteps picked\n", steps);
-	//free_algos(f);
 	return (oplist);
 }

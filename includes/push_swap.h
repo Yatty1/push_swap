@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:47:54 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/12 18:01:48 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/12 19:55:48 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void			oplistdel(t_oplist **oplist);
 ** shared funcs
 */
 
-t_stack			*create_stack(t_stack *stack, char **str, t_option option);
+int				create_stack(t_stack **stack, char **str, t_option option);
 void			error_exit(t_option option);
 
 /*
