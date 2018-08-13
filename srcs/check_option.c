@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/10 12:40:44 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/12 22:16:01 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/13 10:05:04 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	**check_option(int argc, char **argv, t_option *option)
 {
 	int		i;
 
-	i = 0;
+	i = 1;
 	option->v = 0;
 	option->c = 0;
 	if (argc < 2)

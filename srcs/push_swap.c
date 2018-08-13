@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:43:21 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/12 22:12:33 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/13 09:59:18 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int				main(int argc, char **argv)
 	oplist = NULL;
 	if (argc < 2)
 		return (0);
+	argv = check_option(argc, argv, &option);
 	if (!(input = ft_strsplit(argv[1], ' ')))
 		error_exit(option);
-	input = check_option(argc, input, &option);
 	if (!create_stack(&stack, input, option))
 		error_exit(option);
 	if (!(f = set_algos()))

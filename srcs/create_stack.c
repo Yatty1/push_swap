@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 19:36:26 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/12 22:06:42 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/13 10:04:57 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int			create_stack(t_stack **stack, char **str, t_option option)
 	int		j;
 	long	num;
 
-	i = 1;
+	i = 0;
 	while (str[i])
 	{
 		j = 0;
