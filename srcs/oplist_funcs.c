@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 09:47:00 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/11 14:51:28 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/12 17:58:47 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,44 +38,21 @@ void		add_oplist(t_oplist **oplist, t_op op)
 	*oplist = new;
 }
 
-int			oplist_len(t_oplist *oplist)
+void		oplistdel(t_oplist **oplist)
 {
-	int		i;
+	t_oplist	*op;
+	t_oplist	*tmp;
 
-	i = 0;
-	while (oplist)
+	if (!oplist || !*oplist)
+		return ;
+	op = *oplist;
+	while (op)
 	{
-		oplist = oplist->next;
-		i++;
+		tmp = op->next;
+		free(op);
+		op = tmp;
 	}
-	return (i);
-}
-
-t_oplist	*rev_oplist(t_oplist *oplist)
-{
-	t_oplist	*list;
-	t_op		tmp;
-	int			len;
-	int			i;
-
-	if (!oplist)
-		return (NULL);
-	len = oplist_len(oplist);
-	while (len)
-	{
-		i = 0;
-		list = oplist;
-		while (i < len - 1)
-		{
-			tmp = list->op;
-			list->op = list->next->op;
-			list->next->op = tmp;
-			list = list->next;
-			i++;
-		}
-		len--;
-	}
-	return (oplist);
+	*oplist = NULL;
 }
 
 void		print_oplist(t_oplist *oplist)

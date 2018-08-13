@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:47:54 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/11 15:03:16 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/12 18:01:48 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../libft/includes/ft_printf.h"
 # include <stdlib.h>
 # include <unistd.h>
+# define ALGO_NUM 2
 
 typedef enum	e_op
 {
@@ -52,6 +53,16 @@ typedef	struct	s_option
 	int		c;
 }				t_option;
 
+typedef struct	s_object
+{
+	t_stack		*stack;
+	int			len;
+	int			max;
+	int			max_index;
+}				t_object;
+
+typedef t_oplist *(*algos)(t_stack *);
+
 /*
 ** operation funcs
 */
@@ -82,6 +93,7 @@ void			print_stack(t_stack *stack);
 void			stack_status(t_stack *a, t_stack *b, char *inst);
 int				stack_len(t_stack *stack);
 int				is_stackempty(t_stack *stack);
+t_stack			*copy_stack(t_stack *stack);
 
 /*
 ** oplist funcs
@@ -92,6 +104,7 @@ void			add_oplist(t_oplist **oplist, t_op op);
 int				oplist_len(t_oplist *oplist);
 t_oplist		*rev_oplist(t_oplist *oplist);
 void			print_oplist(t_oplist *oplist);
+void			oplistdel(t_oplist **oplist);
 
 /*
 ** shared funcs
@@ -108,7 +121,16 @@ int				is_ascending(t_stack *stack);
 int				is_descending(t_stack *stack);
 void			swap_if_possible(t_stack **a, t_stack **b,
 									t_oplist **oplist, char c);
-t_oplist		*sort(t_stack *a);
+int				get_max(t_stack *stack);
+int				set_max(t_object **object);
+int				get_len(t_stack *stack);
+int				count_steps(t_oplist *oplist);
+algos			*set_algos(void);
+void			free_algos(algos *f);
+t_oplist		*pick_sort_algo(t_stack *stock, t_stack *org, algos *f);
+t_oplist		*insertion_sort(t_stack *a);
+t_oplist		*bubble_sort(t_stack *a);
+t_oplist		*quick_sort(t_stack *a);
 
 /*
 ** checker funcs
