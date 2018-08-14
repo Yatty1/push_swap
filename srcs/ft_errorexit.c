@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 15:20:01 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/10 13:41:21 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/13 10:08:33 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ void	error_exit(t_option option)
 	if (option.c)
 		ft_putstrerr("\033[1;31mError\n");
 	else
-		ft_putstrerr("Error\n");
+		ft_putstrerr("\033[0;37mError\n");
 	exit(-1);
 }

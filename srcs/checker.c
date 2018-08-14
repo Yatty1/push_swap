@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 11:10:22 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/12 19:56:03 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/13 10:08:25 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void	check(char **input, t_stack *a, t_option option)
 			ft_stackdel(&a);
 			ft_stackdel(&b);
 			free_input(input);
-			option.c ? ft_putstrerr("\033[1;33mKO\n") : ft_putstrerr("KO\n");
+			option.c ? ft_putstrerr("\033[1;33mKO\n")
+				: ft_putstrerr("\033[0;37mKO\n");
 			exit(-1);
 		}
 		sorted = sorted->next;
@@ -68,6 +69,7 @@ void	check(char **input, t_stack *a, t_option option)
 int		main(int argc, char **argv)
 {
 	char		**input;
+	char		**c_argv;
 	t_stack		*stack;
 	t_option	option;
 
@@ -76,7 +78,9 @@ int		main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	argv = check_option(argc, argv, &option);
-	if (!create_stack(&stack, argv, option))
+	if (!(c_argv = ft_strsplit(argv[1], ' ')))
+		error_exit(option);
+	if (!create_stack(&stack, c_argv, option))
 		error_exit(option);
 	if (!(input = read_instruction()))
 		error_exit(option);
