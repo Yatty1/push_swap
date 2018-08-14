@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:43:21 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/13 09:59:18 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/14 13:32:53 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int				main(int argc, char **argv)
 	t_option	option;
 	t_oplist	*oplist;
 	char		**input;
-	algos		*f;
+	t_algos		*f;
 
 	stack = NULL;
 	oplist = NULL;

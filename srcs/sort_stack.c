@@ -6,21 +6,13 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 08:36:25 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/12 21:51:04 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/14 13:44:45 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_oplist	*quick_sort(t_stack *a)
-{
-	t_oplist	*oplist;
-
-	oplist = NULL;
-	return (oplist);
-}
-
-t_oplist	*bubble_sort(t_stack *a)
+t_oplist		*bubble_sort(t_stack *a)
 {
 	t_stack		*b;
 	t_oplist	*oplist;
@@ -42,7 +34,34 @@ t_oplist	*bubble_sort(t_stack *a)
 	return (oplist);
 }
 
-t_oplist	*insertion_sort(t_stack *a)
+static int		preprocess(t_stack **a, t_stack **b, t_oplist **oplist)
+{
+	if (is_ascending(*a))
+		return (0);
+	swap_if_possible(a, b, oplist, 'a');
+	if (is_ascending(*a))
+		return (0);
+	push_b(a, b, oplist);
+	return (1);
+}
+
+static int		mainprocess(t_stack **a, t_stack **b, t_oplist **oplist)
+{
+	int		tmp;
+
+	tmp = (*a)->data;
+	rotate_a(a, b, oplist);
+	while (*b && tmp < (*b)->data)
+		push_a(a, b, oplist);
+	rev_rotate_a(a, b, oplist);
+	if (is_ascending(*a) && !*b)
+		return (0);
+	push_b(a, b, oplist);
+	swap_if_possible(a, b, oplist, 'a');
+	return (1);
+}
+
+t_oplist		*insertion_sort(t_stack *a)
 {
 	t_stack		*b;
 	t_oplist	*oplist;
@@ -50,27 +69,16 @@ t_oplist	*insertion_sort(t_stack *a)
 
 	b = NULL;
 	oplist = NULL;
-	if (is_ascending(a))
+	if (!preprocess(&a, &b, &oplist))
 		return (oplist);
-	swap_if_possible(&a, &b, &oplist, 'a');
-	if (is_ascending(a))
-		return (oplist);
-	push_b(&a, &b, &oplist);
 	while ((!is_ascending(a) || !is_descending(b)) || (a->data < b->data))
 	{
-		swap_if_possible(&a, &b, &oplist, 'a');
 		if (a->data > b->data)
 			push_b(&a, &b, &oplist);
 		else if (a->data < b->data)
 		{
-			tmp = a->data;
-			rotate_a(&a, &b, &oplist);
-			while (b && tmp < b->data)
-				push_a(&a, &b, &oplist);
-			rev_rotate_a(&a, &b, &oplist);
-			if (is_ascending(a) && !b)
+			if (!mainprocess(&a, &b, &oplist))
 				break ;
-			push_b(&a, &b, &oplist);
 		}
 		if (is_ascending(a) && !b)
 			break ;

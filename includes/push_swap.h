@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:47:54 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/12 21:32:30 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/14 13:45:58 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct	s_object
 	int			max_index;
 }				t_object;
 
-typedef t_oplist *(*algos)(t_stack *);
+typedef t_oplist	*(*t_algos)(t_stack *);
 
 /*
 ** operation funcs
@@ -125,19 +125,19 @@ int				get_max(t_stack *stack);
 int				set_max(t_object **object);
 int				get_len(t_stack *stack);
 int				count_steps(t_oplist *oplist);
-algos			*set_algos(void);
-void			free_algos(algos **f);
-t_oplist		*pick_sort_algo(t_stack *stock, t_stack *org, algos *f);
+t_algos			*set_algos(void);
+void			free_algos(t_algos **f);
+t_oplist		*pick_sort_algo(t_stack *stock, t_stack *org, t_algos *f);
 t_oplist		*insertion_sort(t_stack *a);
 t_oplist		*bubble_sort(t_stack *a);
-t_oplist		*quick_sort(t_stack *a);
 
 /*
 ** checker funcs
 */
 
 char			**check_option(int argc, char **argv, t_option *option);
-void			dispatcher(t_stack **a, t_stack **b, char *input, t_option option);
+void			dispatcher(t_stack **a, t_stack **b, char *input,
+							t_option option);
 void			check(char **input, t_stack *a, t_option option);
 char			**read_instruction(void);
 int				is_valid(char *str);

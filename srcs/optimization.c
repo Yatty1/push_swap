@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/12 16:29:13 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/12 22:06:42 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/14 13:31:34 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ int			count_steps(t_oplist *oplist)
 	return (i);
 }
 
-algos		*set_algos(void)
+t_algos		*set_algos(void)
 {
-	algos	*f;
+	t_algos	*f;
 
-	if (!(f = (algos *)malloc(sizeof(algos) * ALGO_NUM)))
+	if (!(f = (t_algos *)malloc(sizeof(t_algos) * ALGO_NUM)))
 		return (NULL);
 	f[0] = &insertion_sort;
 	f[1] = &bubble_sort;
@@ -49,7 +49,7 @@ t_stack		*copy_stack(t_stack *stack)
 	return (new);
 }
 
-t_oplist	*pick_sort_algo(t_stack *stack, t_stack *org, algos *f)
+t_oplist	*pick_sort_algo(t_stack *stack, t_stack *org, t_algos *f)
 {
 	t_oplist	*oplist;
 	t_oplist	*tmp_op;
