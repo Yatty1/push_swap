@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 08:36:25 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/14 13:44:45 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/14 15:59:37 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,15 @@ t_oplist		*bubble_sort(t_stack *a)
 	b = NULL;
 	oplist = NULL;
 	max = get_max(a);
-	if (is_ascending(a))
-		return (oplist);
 	while ((!is_ascending(a)))
 	{
 		if (a->data > a->next->data && max != a->data)
 			swap_a(&a, &b, &oplist);
+		if (is_ascending(a))
+			break ;
 		rotate_a(&a, &b, &oplist);
+		if (is_ascending(a))
+			break ;
 	}
 	ft_stackdel(&a);
 	ft_stackdel(&b);
