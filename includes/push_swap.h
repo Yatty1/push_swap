@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:47:54 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/14 13:45:58 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/14 16:39:06 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ t_oplist		*bubble_sort(t_stack *a);
 ** checker funcs
 */
 
-char			**check_option(int argc, char **argv, t_option *option);
+char			**check_option(int *argc, char **argv, t_option *option);
 void			dispatcher(t_stack **a, t_stack **b, char *input,
 							t_option option);
 void			check(char **input, t_stack *a, t_option option);

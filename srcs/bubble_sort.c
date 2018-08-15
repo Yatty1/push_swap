@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_option.c                                     :+:      :+:    :+:   */
+/*   bubble_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/10 12:40:44 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/14 17:02:55 by syamada          ###   ########.fr       */
+/*   Created: 2018/08/14 16:19:37 by syamada           #+#    #+#             */
+/*   Updated: 2018/08/14 16:19:41 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	**check_option(int *argc, char **argv, t_option *option)
+t_oplist		*bubble_sort(t_stack *a)
 {
-	int		i;
+	t_stack		*b;
+	t_oplist	*oplist;
+	int			max;
 
-	i = 1;
-	option->v = 0;
-	option->c = 0;
-	if (*argc < 2)
-		return (argv);
-	if (ft_strequ("-v", argv[i]))
-		option->v = 1;
-	else if (ft_strequ("-c", argv[i]))
-		option->c = 1;
-	else if (ft_strequ("-cv", argv[i]) || ft_strequ("-vc", argv[i]))
+	b = NULL;
+	oplist = NULL;
+	max = get_max(a);
+	while ((!is_ascending(a)))
 	{
-		option->c = 1;
-		option->v = 1;
+		if (a->data > a->next->data && max != a->data)
+			swap_a(&a, &b, &oplist);
+		if (is_ascending(a))
+			break ;
+		rotate_a(&a, &b, &oplist);
+		if (is_ascending(a))
+			break ;
 	}
-	if (option->v || option->c)
-	{
-		argv += 2;
-		*argc -= 2;
-	}
-	return (argv);
+	ft_stackdel(&a);
+	ft_stackdel(&b);
+	return (oplist);
 }

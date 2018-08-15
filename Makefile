@@ -6,7 +6,7 @@
 #    By: syamada <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/06 21:25:07 by syamada           #+#    #+#              #
-#    Updated: 2018/08/13 10:05:31 by syamada          ###   ########.fr        #
+#    Updated: 2018/08/14 16:20:53 by syamada          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,8 @@ OPSRCS		:= $(addprefix $(OPSDIR)/, swap_funcs.c push_funcs.c rotate_funcs.c \
 
 OTHERSRCS	:= $(addprefix $(SRCDIR)/, create_stack.c stack_funcs.c stack_helpers.c \
 					checker_helpers.c ft_errorexit.c stack_status.c check_option.c \
-					oplist_funcs.c sort_stack.c sort_helpers.c bubble_helpers.c \
-					optimization.c oplist_helpers.c)
+					oplist_funcs.c sort_helpers.c optimization.c oplist_helpers.c \
+					bubble_sort.c bubble_helpers.c insertion_sort.c)
 
 #colors
 COM_COLOR	:= \033[0;34m

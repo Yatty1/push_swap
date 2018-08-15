@@ -1,40 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_stack.c                                       :+:      :+:    :+:   */
+/*   insertion_sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/11 08:36:25 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/14 15:59:37 by syamada          ###   ########.fr       */
+/*   Created: 2018/08/14 16:19:24 by syamada           #+#    #+#             */
+/*   Updated: 2018/08/14 16:19:29 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-t_oplist		*bubble_sort(t_stack *a)
-{
-	t_stack		*b;
-	t_oplist	*oplist;
-	int			max;
-
-	b = NULL;
-	oplist = NULL;
-	max = get_max(a);
-	while ((!is_ascending(a)))
-	{
-		if (a->data > a->next->data && max != a->data)
-			swap_a(&a, &b, &oplist);
-		if (is_ascending(a))
-			break ;
-		rotate_a(&a, &b, &oplist);
-		if (is_ascending(a))
-			break ;
-	}
-	ft_stackdel(&a);
-	ft_stackdel(&b);
-	return (oplist);
-}
 
 static int		preprocess(t_stack **a, t_stack **b, t_oplist **oplist)
 {
