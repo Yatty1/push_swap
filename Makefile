@@ -6,14 +6,14 @@
 #    By: syamada <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/06 21:25:07 by syamada           #+#    #+#              #
-#    Updated: 2018/08/14 16:20:53 by syamada          ###   ########.fr        #
+#    Updated: 2018/08/20 16:26:50 by syamada          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			:= gcc
 CFLAGS		:= -Wall -Werror -Wextra
 DEBUG		:= -g
-SANITIZER	:= -fsanitizer=address
+SANITIZER	:= -fsanitize=address
 
 LIB			:= libft.a
 LIBDIR		:= libft

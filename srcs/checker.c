@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 11:10:22 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/14 17:26:45 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/20 21:16:36 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ void	check(char **input, t_stack *a, t_option option)
 
 	i = 0;
 	b = NULL;
-	while (input[i] && *input && input)
+	while (input && *input && input[i])
 		dispatcher(&a, &b, input[i++], option);
+	if (!a || !a->next)
+		return ;
 	sorted = a;
 	while (sorted->next)
 	{

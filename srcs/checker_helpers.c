@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 21:08:49 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/14 17:02:56 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/20 16:29:42 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	free_input(char **input)
 	int		i;
 
 	i = 0;
-	while (input[i])
+	while (input && *input && input[i])
 		ft_strdel(&input[i++]);
 	free(input);
 }

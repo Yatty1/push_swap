@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/16 14:24:45 by syamada           #+#    #+#             */
-/*   Updated: 2018/07/23 22:03:44 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/20 16:24:59 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char		**ft_strsplit(char const *s, char c)
 	j = 0;
 	if (s == NULL)
 		return (NULL);
-	if (!(a_str = (char **)malloc(sizeof(char *) * c_w((char *)s, c) + 1)))
+	if (!(a_str = (char **)malloc(sizeof(char *) * (c_w((char *)s, c) + 1))))
 		return (NULL);
 	while (s[i])
 	{
