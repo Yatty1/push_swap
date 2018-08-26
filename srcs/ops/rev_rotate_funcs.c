@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 17:03:32 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/11 17:36:31 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/25 17:02:46 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void		rev_rotate_b(t_stack **a, t_stack **b, t_oplist **oplist)
 	free(stack);
 	pre->next = NULL;
 	ft_stackpush(b, num);
-	add_oplist(oplist, RRA);
+	add_oplist(oplist, RRB);
 }
 
 void		rev_rotate_ab(t_stack **a, t_stack **b, t_oplist **oplist)

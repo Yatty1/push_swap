@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:47:54 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/20 21:15:05 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/25 19:26:44 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@
 # include "../libft/includes/ft_printf.h"
 # include <stdlib.h>
 # include <unistd.h>
+
 # define ALGO_NUM 2
+# define LC 1
+# define LV 2
 
 typedef enum	e_op
 {
@@ -46,12 +49,6 @@ typedef struct	s_stack
 	int				data;
 	struct s_stack	*next;
 }				t_stack;
-
-typedef	struct	s_option
-{
-	int		v;
-	int		c;
-}				t_option;
 
 typedef struct	s_object
 {
@@ -110,8 +107,8 @@ void			oplistdel(t_oplist **oplist);
 ** shared funcs
 */
 
-int				create_stack(t_stack **stack, char **str, t_option option);
-void			error_exit(t_option option);
+int				create_stack(t_stack **stack, char **str, char option);
+void			error_exit(char option);
 
 /*
 ** push_swap funcs
@@ -119,26 +116,33 @@ void			error_exit(t_option option);
 
 int				is_ascending(t_stack *stack);
 int				is_descending(t_stack *stack);
-void			swap_if_possible(t_stack **a, t_stack **b,
-									t_oplist **oplist, char c);
-int				get_max(t_stack *stack);
-int				set_max(t_object **object);
-int				get_len(t_stack *stack);
 int				count_steps(t_oplist *oplist);
 t_algos			*set_algos(void);
 void			free_algos(t_algos **f);
 t_oplist		*pick_sort_algo(t_stack *stock, t_stack *org, t_algos *f);
 t_oplist		*insertion_sort(t_stack *a);
 t_oplist		*bubble_sort(t_stack *a);
+t_oplist		*simple_sort(t_stack *a);
+
+/*
+** sorting helpers
+*/
+
+void			swap_if_possible(t_stack **a, t_stack **b,
+									t_oplist **oplist, char c);
+int				get_max(t_stack *stack);
+int				set_max(t_object **object);
+int				max_index(t_stack *stack, int *index);
+void			max_top(t_stack **a, t_stack **b, t_oplist **op);
 
 /*
 ** checker funcs
 */
 
-char			**check_option(int *argc, char **argv, t_option *option);
+char			**check_option(int *argc, char **argv, char *option);
 void			dispatcher(t_stack **a, t_stack **b, char *input,
-							t_option option);
-void			check(char **input, t_stack *a, t_option option);
+							char option);
+void			check(char **input, t_stack *a, char option);
 char			**read_instruction(void);
 int				is_valid(char *str);
 void			free_input(char **input);

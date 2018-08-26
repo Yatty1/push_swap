@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:43:21 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/23 21:16:27 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/25 19:26:44 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void		oplist_printer(t_oplist *oplist)
 int				main(int argc, char **argv)
 {
 	t_stack		*stack;
-	t_option	option;
+	char		option;
 	t_oplist	*oplist;
 	t_algos		*f;
 
@@ -35,17 +35,18 @@ int				main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	argv = check_option(&argc, argv, &option);
-	if (((option.v || option.c) && argc == 1) || argc == 2)
+	if (((option & (LV | LC)) && argc == 1) || argc == 2)
 	{
 		if (!(argv = ft_strsplit(argv[argc - 1], ' ')))
 			error_exit(option);
 	}
 	else
-		argv += (option.c || option.v) ? 0 : 1;
+		argv += (option & (LV | LC)) ? 0 : 1;
 	if (!create_stack(&stack, argv, option))
 		error_exit(option);
 	f = set_algos();
-	oplist = pick_sort_algo(stack, copy_stack(stack), f);
+	//oplist = pick_sort_algo(stack, copy_stack(stack), f);
+	oplist = simple_sort(stack);
 	free(f);
 	oplist_printer(oplist);
 	return (0);

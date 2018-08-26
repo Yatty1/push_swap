@@ -6,13 +6,13 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 19:36:26 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/21 19:55:04 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/25 19:24:52 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			create_stack(t_stack **stack, char **str, t_option option)
+int			create_stack(t_stack **stack, char **str, char option)
 {
 	int		i;
 	int		j;

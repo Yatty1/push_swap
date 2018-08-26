@@ -6,13 +6,13 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 11:10:22 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/20 21:16:36 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/25 19:21:29 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	dispatcher(t_stack **a, t_stack **b, char *input, t_option option)
+void	dispatcher(t_stack **a, t_stack **b, char *input, char option)
 {
 	if (ft_strequ("sa", input))
 		swap_a(a, b, NULL);
@@ -36,11 +36,11 @@ void	dispatcher(t_stack **a, t_stack **b, char *input, t_option option)
 		rev_rotate_b(a, b, NULL);
 	else if (ft_strequ("rrr", input))
 		rev_rotate_ab(a, b, NULL);
-	if (option.v)
+	if (option & LV)
 		stack_status(*a, *b, input);
 }
 
-void	check(char **input, t_stack *a, t_option option)
+void	check(char **input, t_stack *a, char option)
 {
 	int		i;
 	t_stack *b;
@@ -60,7 +60,7 @@ void	check(char **input, t_stack *a, t_option option)
 			ft_stackdel(&a);
 			ft_stackdel(&b);
 			free_input(input);
-			option.c ? ft_putstrerr("\033[1;33mKO\n")
+			option & LC ? ft_putstrerr("\033[1;33mKO\n")
 				: ft_putstrerr("\033[0;37mKO\n");
 			exit(-1);
 		}
@@ -72,25 +72,25 @@ int		main(int argc, char **argv)
 {
 	char		**input;
 	t_stack		*stack;
-	t_option	option;
+	char		option;
 
 	stack = NULL;
 	input = NULL;
 	if (argc < 2)
 		return (0);
 	argv = check_option(&argc, argv, &option);
-	if (((option.v || option.c) && argc == 1) || argc == 2)
+	if (((option & (LV | LC)) && argc == 1) || argc == 2)
 	{
 		if (!(argv = ft_strsplit(argv[argc - 1], ' ')))
 			error_exit(option);
 	}
 	else
-		argv += (option.c || option.v) ? 0 : 1;
+		argv += (option & (LV | LC)) ? 0 : 1;
 	if (!create_stack(&stack, argv, option))
 		error_exit(option);
 	input = read_instruction();
 	check(input, stack, option);
-	option.c ? ft_putstr("\033[1;32mOK\n") : ft_putstr("OK\n");
+	(option & LC) ? ft_putstr("\033[1;32mOK\n") : ft_putstr("OK\n");
 	free_input(input);
 	return (0);
 }

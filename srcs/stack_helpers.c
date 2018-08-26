@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:38:14 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/23 20:47:34 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/25 19:07:24 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,23 @@ void		print_stack(t_stack *stack)
 		stack = stack->next;
 		i++;
 	}
+}
+
+void		stack_status(t_stack *a, t_stack *b, char *inst)
+{
+	ft_putendl(inst);
+	ft_putstr("A[ ");
+	while (a)
+	{
+		ft_printf("%d ", a->data);
+		a = a->next;
+	}
+	ft_putstr("]\n");
+	ft_putstr("B[ ");
+	while (b)
+	{
+		ft_printf("%d ", b->data);
+		b = b->next;
+	}
+	ft_putstr("]\n");
 }
