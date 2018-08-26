@@ -6,25 +6,11 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 16:19:37 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/25 19:05:27 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/25 20:02:25 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int			get_max(t_stack *stack)
-{
-	int		max;
-
-	max = stack->data;
-	while (stack)
-	{
-		if (max < stack->data)
-			max = stack->data;
-		stack = stack->next;
-	}
-	return (max);
-}
 
 int			set_max(t_object **object)
 {

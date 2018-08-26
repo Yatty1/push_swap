@@ -6,11 +6,24 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 16:19:24 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/19 14:15:44 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/25 19:54:51 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static  void	swap_if_possible(t_stack **a, t_stack **b, t_oplist **oplist, char c)
+{
+	t_stack		*tmp;
+
+	tmp = c == 'a' ? *a : *b;
+	if (!tmp || !tmp->next)
+		return ;
+	if (tmp->data > tmp->next->data && c == 'a')
+		swap_a(a, b, oplist);
+	if (tmp->data < tmp->next->data && c == 'b')
+		swap_b(a, b, oplist);
+}
 
 static int		preprocess(t_stack **a, t_stack **b, t_oplist **oplist)
 {

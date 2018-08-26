@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:47:54 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/25 19:26:44 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/25 21:44:59 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,12 +128,12 @@ t_oplist		*simple_sort(t_stack *a);
 ** sorting helpers
 */
 
-void			swap_if_possible(t_stack **a, t_stack **b,
-									t_oplist **oplist, char c);
 int				get_max(t_stack *stack);
 int				set_max(t_object **object);
 int				max_index(t_stack *stack, int *index);
 void			max_top(t_stack **a, t_stack **b, t_oplist **op);
+void			quick_sort(int **input, int left, int right);
+int				*sort_stack_with_quick(t_stack *stack);
 
 /*
 ** checker funcs

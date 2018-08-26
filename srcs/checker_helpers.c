@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 21:08:49 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/25 19:05:46 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/25 20:10:15 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int		is_valid(char *str)
 	return (0);
 }
 
+//pass stack. if error, free everything and print error exit
 char	**read_instruction(void)
 {
 	char	*str;

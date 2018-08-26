@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 11:10:22 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/25 19:21:29 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/25 21:45:12 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	check(char **input, t_stack *a, char option)
 int		main(int argc, char **argv)
 {
 	char		**input;
-	t_stack		*stack;
 	char		option;
+	t_stack		*stack;
 
 	stack = NULL;
 	input = NULL;

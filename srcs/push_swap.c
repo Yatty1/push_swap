@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:43:21 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/25 19:26:44 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/25 21:44:58 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int				main(int argc, char **argv)
 		argv += (option & (LV | LC)) ? 0 : 1;
 	if (!create_stack(&stack, argv, option))
 		error_exit(option);
-	f = set_algos();
+	//f = set_algos();
 	//oplist = pick_sort_algo(stack, copy_stack(stack), f);
 	oplist = simple_sort(stack);
 	free(f);

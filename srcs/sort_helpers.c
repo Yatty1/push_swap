@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 16:02:48 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/25 19:06:52 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/25 21:45:19 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,16 @@ int		is_descending(t_stack *stack)
 	return (1);
 }
 
-void	swap_if_possible(t_stack **a, t_stack **b, t_oplist **oplist, char c)
+int			get_max(t_stack *stack)
 {
-	t_stack		*tmp;
+	int		max;
 
-	tmp = c == 'a' ? *a : *b;
-	if (!tmp || !tmp->next)
-		return ;
-	if (tmp->data > tmp->next->data && c == 'a')
-		swap_a(a, b, oplist);
-	if (tmp->data < tmp->next->data && c == 'b')
-		swap_b(a, b, oplist);
+	max = stack->data;
+	while (stack)
+	{
+		if (max < stack->data)
+			max = stack->data;
+		stack = stack->next;
+	}
+	return (max);
 }
