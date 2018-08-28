@@ -6,7 +6,7 @@
 #    By: syamada <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/06 21:25:07 by syamada           #+#    #+#              #
-#    Updated: 2018/08/25 21:29:09 by syamada          ###   ########.fr        #
+#    Updated: 2018/08/28 16:18:32 by syamada          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,8 @@ OPSRCS		:= $(addprefix $(OPSDIR)/, swap_funcs.c push_funcs.c rotate_funcs.c \
 OTHERSRCS	:= $(addprefix $(SRCDIR)/, create_stack.c stack_funcs.c stack_helpers.c \
 					checker_helpers.c ft_errorexit.c check_option.c oplist_funcs.c \
 					sort_helpers.c optimization.c oplist_helpers.c \
-					bubble_sort.c insertion_sort.c sort.c sort_input.c \
-					divide_median.c)
+					bubble_sort.c insertion_sort.c sort_input.c \
+					divide_sort.c)
 
 #colors
 COM_COLOR	:= \033[0;34m
@@ -81,6 +81,13 @@ debug:
 	@make d$(CHECKER)
 	@make d$(SWAP)
 
+.PHONY: cleandebug
+cleandebug:
+	@rm -rf d$(CHECKER).dSYM
+	@rm -rf d$(SWAP).dSYM
+	@rm -f d$(CHECKER)
+	@rm -f d$(SWAP)
+
 d$(CHECKER): $(LIBDIR) $(LIBDIR)/$(LIB)
 	@printf "%b" "$(DEBUG_COLOR)[DEBUG MODE] $(NO_COLOR)Creating $(EXEC_COLOR)$@"
 	@$(CC) -o $@ $(CFLAG) $(DEBUG) $(CHECKERSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
@@ -91,24 +98,31 @@ d$(SWAP): $(LIBDIR) $(LIBDIR)/$(LIB)
 	@$(CC) -o $@ $(CFLAG) $(DEBUG) $(SWAPSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
 	@printf "%b" " ✔\n"
 
-.PHONY: cleandebug
-cleandebug:
-	@rm -rf d$(CHECKER).dSYM
-	@rm -rf d$(SWAP).dSYM
-	@rm -f d$(CHECKER)
-	@rm -f d$(SWAP)
+.PHONY: sanitize
+sanitize: $(LIBDIR) $(LIBDIR)/$(LIB)
+	@printf "%b" "$(OK_COLOR)[SANITIZE MODE] "
+	@printf "%b" "$(NO_COLOR)Creating $(EXEC_COLOR)$(CHECKER)"
+	@$(CC) -o $(CHECKER) $(CFLAG) $(SANITIZER) $(CHECKERSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
+	@printf "%b" " ✔\n"
+	@printf "%b" "$(OK_COLOR)[SANITIZE MODE] "
+	@printf "%b" "$(NO_COLOR)Creating $(EXEC_COLOR)$(SWAP)"
+	@$(CC) -o $(SWAP) $(CFLAG) $(SANITIZER) $(SWAPSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
+	@printf "%b" " ✔\n"
 
 .PHONY: qc
 qc:
-	@printf "%b" "Quick recompile for $(CHECKER)\n"
+	@printf "%b" "$(NO_COLOR)Quick recompile for $(CHECKER)\n"
 	@rm -f $(CHECKER)
 	@make $(CHECKER)
 
 .PHONY: qs
 qs:
-	@printf "%b" "Quick recompile for $(SWAP)\n"
+	@printf "%b" "$(NO_COLOR)Quick recompile for $(SWAP)\n"
 	@rm -f $(SWAP)
 	@make $(SWAP)
+
+.PHONY: quick
+quick: qs qc
 
 .PHONY: rec
 rec: fclean $(CHECKER)

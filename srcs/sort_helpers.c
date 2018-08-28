@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 16:02:48 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/25 21:45:19 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/28 16:16:49 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,45 @@ int			get_max(t_stack *stack)
 		stack = stack->next;
 	}
 	return (max);
+}
+
+int			max_index(t_stack *stack, int *index)
+{
+	int		i;
+	int		max;
+	int		tmp;
+
+	i = 0;
+	*index = i;
+	max = stack->data;
+	while (stack)
+	{
+		if ((tmp = stack->data) > max)
+		{
+			max = tmp;
+			*index = i;
+		}
+		stack = stack->next;
+		i++;
+	}
+	return (i);
+}
+
+void		max_top(t_stack **a, t_stack **b, t_oplist **op)
+{
+	int		index;
+	int		len;
+
+	len = max_index(*b, &index);
+	if (index > len / 2)
+	{
+		len -= index;
+		while (len--)
+			rev_rotate_b(a, b, op);
+	}
+	else
+	{
+		while (index--)
+			rotate_b(a, b, op);
+	}
 }

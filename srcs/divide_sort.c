@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   divide_median.c                                    :+:      :+:    :+:   */
+/*   divide_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/25 20:15:26 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/28 14:57:12 by syamada          ###   ########.fr       */
+/*   Created: 2018/08/28 16:21:38 by syamada           #+#    #+#             */
+/*   Updated: 2018/08/28 16:21:45 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void		init_object(t_object **ob, t_stack *a)
 {
 	*ob = (t_object *)malloc(sizeof(t_object));
 	(*ob)->arr = sort_stack_with_quick(a, ob);
-	(*ob)->inc = (*ob)->len / 4;
+	// 5 for 100, 15 for 500
+	(*ob)->inc = (*ob)->len < 250 ? (*ob)->len / 5 : (*ob)->len / 15;
 	(*ob)->i_target = (*ob)->inc - 1;
 	(*ob)->target = (*ob)->arr[(*ob)->i_target];
 	(*ob)->offset = (*ob)->len;
@@ -83,10 +84,14 @@ t_oplist	*sort_with_optimize(t_stack *a)
 		rough_sort_push(&a, &b, &op, ob);
 		ob->i_target += ob->inc;
 	}
+	while (a)
+		push_b(&a, &b, &op);
 	while (b)
 	{
 		max_top(&a, &b, &op);
 		push_a(&a, &b, &op);
 	}
+	ft_stackdel(&a);
+	ft_stackdel(&b);
 	return (op);
 }

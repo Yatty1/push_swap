@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:47:54 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/25 21:44:59 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/28 16:18:16 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,23 +118,21 @@ void			error_exit(char option);
 ** push_swap funcs
 */
 
-int				is_ascending(t_stack *stack);
-int				is_descending(t_stack *stack);
 int				count_steps(t_oplist *oplist);
 t_algos			*set_algos(void);
 void			free_algos(t_algos **f);
 t_oplist		*pick_sort_algo(t_stack *stock, t_stack *org, t_algos *f);
 t_oplist		*insertion_sort(t_stack *a);
 t_oplist		*bubble_sort(t_stack *a);
-t_oplist		*simple_sort(t_stack *a);
 t_oplist		*sort_with_optimize(t_stack *a);
 
 /*
 ** sorting helpers
 */
 
+int				is_ascending(t_stack *stack);
+int				is_descending(t_stack *stack);
 int				get_max(t_stack *stack);
-int				set_max(t_object **object);
 int				max_index(t_stack *stack, int *index);
 void			max_top(t_stack **a, t_stack **b, t_oplist **op);
 void			quick_sort(int **input, int left, int right);
