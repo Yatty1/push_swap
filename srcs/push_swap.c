@@ -46,7 +46,7 @@ int				main(int argc, char **argv)
 		error_exit(option);
 	//f = set_algos();
 	//oplist = pick_sort_algo(stack, copy_stack(stack), f);
-	oplist = simple_sort(stack);
+	oplist = sort_with_optimize(stack);
 	free(f);
 	oplist_printer(oplist);
 	return (0);

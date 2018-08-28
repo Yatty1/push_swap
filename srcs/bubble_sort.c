@@ -12,22 +12,6 @@
 
 #include "push_swap.h"
 
-int			set_max(t_object **object)
-{
-	int		max;
-	t_stack	*stack;
-
-	stack = (*object)->stack;
-	max = stack->data;
-	while (stack)
-	{
-		if (max < stack->data)
-			max = stack->data;
-		stack = stack->next;
-	}
-	return (max);
-}
-
 t_oplist		*bubble_sort(t_stack *a)
 {
 	t_stack		*b;

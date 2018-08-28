@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# define ABS_MID(x, len) ((x < (len / 2)) ? x : len - x)
 # define ALGO_NUM 2
 # define LC 1
 # define LV 2
@@ -52,10 +53,13 @@ typedef struct	s_stack
 
 typedef struct	s_object
 {
-	t_stack		*stack;
+	int			*arr;
 	int			len;
-	int			max;
-	int			max_index;
+	int			inc;
+	int			i_target;
+	int			target;
+	int			offset;
+	t_op		op;
 }				t_object;
 
 typedef t_oplist	*(*t_algos)(t_stack *);
@@ -123,6 +127,7 @@ t_oplist		*pick_sort_algo(t_stack *stock, t_stack *org, t_algos *f);
 t_oplist		*insertion_sort(t_stack *a);
 t_oplist		*bubble_sort(t_stack *a);
 t_oplist		*simple_sort(t_stack *a);
+t_oplist		*sort_with_optimize(t_stack *a);
 
 /*
 ** sorting helpers
@@ -133,7 +138,7 @@ int				set_max(t_object **object);
 int				max_index(t_stack *stack, int *index);
 void			max_top(t_stack **a, t_stack **b, t_oplist **op);
 void			quick_sort(int **input, int left, int right);
-int				*sort_stack_with_quick(t_stack *stack);
+int				*sort_stack_with_quick(t_stack *stack, t_object **ob);
 
 /*
 ** checker funcs

@@ -53,7 +53,7 @@ void			quick_sort(int **input, int left, int right)
 	quick_sort(input, pivot + 1, right);
 }
 
-int				*sort_stack_with_quick(t_stack *stack)
+int				*sort_stack_with_quick(t_stack *stack, t_object **ob)
 {
 	int		len;
 	int		i;
@@ -68,5 +68,6 @@ int				*sort_stack_with_quick(t_stack *stack)
 		stack = stack->next;
 	}
 	quick_sort(&arr, 0, len - 1);
+	(*ob)->len = len;
 	return (arr);
 }
