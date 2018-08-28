@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 20:15:26 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/25 21:44:57 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/28 14:57:12 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_object	*closest_target(t_stack *stack, t_object *ob)
 	tmp = 0;
 	while (stack)
 	{
-		if (stack->data < ob->target)
+		if (stack->data <= ob->target)
 		{
 			if ((tmp = ABS_MID(i, ob->len)) < ob->offset)
 			{
@@ -40,6 +40,7 @@ void		get_target(t_stack **a, t_stack **b, t_oplist **op, t_object *ob)
 	ob = closest_target(*a, ob);
 	while (ob->offset--)
 		ob->op == RA ? rotate_a(a, b, op) : rev_rotate_a(a, b, op);
+	ob->offset = ob->len;
 }
 
 void		rough_sort_push(t_stack **a, t_stack **b, t_oplist **op, t_object *ob)
