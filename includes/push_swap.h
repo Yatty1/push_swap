@@ -151,6 +151,6 @@ void			dispatcher(t_stack **a, t_stack **b, char *input,
 void			check(char **input, t_stack *a, char option);
 char			**read_instruction(char option);
 int				is_valid(char *str);
-void			free_input(char **input);
+void			free_input(char ***input);
 
 #endif

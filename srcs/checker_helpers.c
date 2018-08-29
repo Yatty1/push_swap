@@ -35,33 +35,36 @@ char	**read_instruction(char option)
 
 	str = NULL;
 	two_d = NULL;
-	input = ft_strnew(1);
+	input = NULL;
 	while (get_next_line(0, &str) > 0)
 	{
 		if (is_valid(str))
-			input = ft_strjoinfree_with(input, str, ',');
+			input = !input ? ft_strdup(str) : ft_strjoinfree_with(&input, &str, ',');
 		else
 			free_exit(str, input, option);
 	}
 	if (!*input || !(two_d = ft_strsplit(input, ',')))
 	{
 		ft_strdel(&input);
-		free_input(two_d);
+		free_input(&two_d);
 		return (NULL);
 	}
 	ft_strdel(&input);
 	return (two_d);
 }
 
-void	free_input(char **input)
+void	free_input(char ***input)
 {
 	int		i;
+	char	**tmp;
 
 	i = 0;
-	if (input && *input)
+	tmp = *input;
+	if (tmp && *tmp)
 	{
-		while (input && *input && input[i])
-			ft_strdel(&input[i++]);
-		free(input);
+		while (tmp[i])
+			ft_strdel(&tmp[i++]);
+		free(tmp);
+		tmp = NULL;
 	}
 }

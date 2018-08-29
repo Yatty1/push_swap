@@ -58,13 +58,14 @@ void	check(char **input, t_stack *a, char option)
 		if (sorted->data > sorted->next->data)
 		{
 			ft_stackdel(&a);
-			free_input(input);
+			free_input(&input);
 			option & LC ? ft_putstrerr("\033[1;33mKO\n")
 				: ft_putstrerr("\033[0;37mKO\n");
 			exit(-1);
 		}
 		sorted = sorted->next;
 	}
+	ft_stackdel(&a);
 }
 
 int		main(int argc, char **argv)
@@ -76,6 +77,7 @@ int		main(int argc, char **argv)
 
 	stack = NULL;
 	av = NULL;
+	input = NULL;
 	if (argc < 2)
 		return (0);
 	argv = check_option(&argc, argv, &option);
@@ -91,8 +93,8 @@ int		main(int argc, char **argv)
 	input = read_instruction(option);
 	check(input, stack, option);
 	(option & LC) ? ft_putstr("\033[1;32mOK\n") : ft_putstr("OK\n");
-	free_input(input);
-	free_input(av);
+	free_input(&input);
+	free_input(&av);
 	while (1);
 	return (0);
 }

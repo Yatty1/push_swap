@@ -12,12 +12,12 @@
 
 #include "libft.h"
 
-char		*ft_strjoinfree_with(const char *s1, const char *s2, char c)
+char		*ft_strjoinfree_with(char **s1, char **s2, char c)
 {
 	char	*new;
 
-	new = ft_strjoin_with(s1, s2, c);
-	ft_strdel((char **)&s1);
-	ft_strdel((char **)&s2);
+	new = ft_strjoin_with(*s1, *s2, c);
+	ft_strdel(s1);
+	ft_strdel(s2);
 	return (new);
 }
