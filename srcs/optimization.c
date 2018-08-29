@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/12 16:29:13 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/28 16:09:23 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/28 18:17:19 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,18 @@ t_oplist	*pick_sort_algo(t_stack *stack, t_stack *org, t_algos *f)
 	}
 	ft_stackdel(&org);
 	return (oplist);
+}
+
+t_oplist	*pick_algo(t_stack *stack)
+{
+	int			len;
+	t_oplist	*op;
+
+	op = NULL;
+	len = stack_len(stack);
+	if (len < 50)
+		op = small_sort(stack);
+	else
+		op = divide_sort(stack);
+	return (op);
 }

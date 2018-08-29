@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 16:21:38 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/28 16:21:45 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/28 18:17:19 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void		get_target(t_stack **a, t_stack **b, t_oplist **op, t_object *ob)
 	ob->offset = ob->len;
 }
 
-void		rough_sort_push(t_stack **a, t_stack **b, t_oplist **op, t_object *ob)
+void		rough_sort_push(t_stack **a, t_stack **b, t_oplist **op,
+							t_object *ob)
 {
 	int		i;
 
@@ -60,7 +61,6 @@ void		init_object(t_object **ob, t_stack *a)
 {
 	*ob = (t_object *)malloc(sizeof(t_object));
 	(*ob)->arr = sort_stack_with_quick(a, ob);
-	// 5 for 100, 15 for 500
 	(*ob)->inc = (*ob)->len < 250 ? (*ob)->len / 5 : (*ob)->len / 15;
 	(*ob)->i_target = (*ob)->inc - 1;
 	(*ob)->target = (*ob)->arr[(*ob)->i_target];
@@ -68,7 +68,7 @@ void		init_object(t_object **ob, t_stack *a)
 	(*ob)->op = RA;
 }
 
-t_oplist	*sort_with_optimize(t_stack *a)
+t_oplist	*divide_sort(t_stack *a)
 {
 	t_object	*ob;
 	t_oplist	*op;

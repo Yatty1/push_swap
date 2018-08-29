@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:47:54 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/28 16:18:16 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/28 18:17:20 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,15 @@ int				count_steps(t_oplist *oplist);
 t_algos			*set_algos(void);
 void			free_algos(t_algos **f);
 t_oplist		*pick_sort_algo(t_stack *stock, t_stack *org, t_algos *f);
+t_oplist		*pick_algo(t_stack *a);
+void			rough_sort_push(t_stack **a, t_stack **b, t_oplist **op, t_object *ob);
+void			init_object(t_object **ob, t_stack *a);
+void			get_target(t_stack **a, t_stack **b, t_oplist **op, t_object *ob);
+t_object		*closest_target(t_stack *stack, t_object *ob);
 t_oplist		*insertion_sort(t_stack *a);
 t_oplist		*bubble_sort(t_stack *a);
-t_oplist		*sort_with_optimize(t_stack *a);
+t_oplist		*divide_sort(t_stack *a);
+t_oplist		*small_sort(t_stack *a);
 
 /*
 ** sorting helpers

@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:43:21 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/28 16:17:16 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/28 18:12:39 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ int				main(int argc, char **argv)
 		argv += (option & (LV | LC)) ? 0 : 1;
 	if (!create_stack(&stack, argv, option))
 		error_exit(option);
-	//f = set_algos();
-	//oplist = pick_sort_algo(stack, copy_stack(stack), f);
-	oplist = sort_with_optimize(stack);
-//	free(f);
+	oplist = pick_algo(stack);
 	oplist_printer(oplist);
 	return (0);
 }
