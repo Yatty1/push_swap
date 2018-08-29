@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 21:08:49 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/28 19:50:46 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/29 11:53:40 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ int		is_valid(char *str)
 	return (0);
 }
 
-//pass stack. if error, free everything and print error exit
-char	**read_instruction(char option)
+char	**read_instruction(char option, char ***av)
 {
 	char	*str;
 	char	*input;
@@ -35,13 +34,13 @@ char	**read_instruction(char option)
 
 	str = NULL;
 	two_d = NULL;
-	input = NULL;
+	input = ft_strnew(1);
 	while (get_next_line(0, &str) > 0)
 	{
 		if (is_valid(str))
-			input = !input ? ft_strdup(str) : ft_strjoinfree_with(&input, &str, ',');
+			input = ft_strjoinfree_with(&input, &str, ',');
 		else
-			free_exit(str, input, option);
+			free_exit(str, input, av, option);
 	}
 	if (!*input || !(two_d = ft_strsplit(input, ',')))
 	{

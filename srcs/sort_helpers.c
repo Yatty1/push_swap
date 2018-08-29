@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 16:02:48 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/28 18:00:19 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/29 11:39:58 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		is_descending(t_stack *stack)
 	return (1);
 }
 
-int			get_max(t_stack *stack)
+int		get_max(t_stack *stack)
 {
 	int		max;
 
@@ -52,7 +52,7 @@ int			get_max(t_stack *stack)
 	return (max);
 }
 
-int			max_index(t_stack *stack, int *index)
+int		max_index(t_stack *stack, int *index)
 {
 	int		i;
 	int		max;
@@ -74,7 +74,7 @@ int			max_index(t_stack *stack, int *index)
 	return (i);
 }
 
-void		max_top(t_stack **a, t_stack **b, t_oplist **op)
+void	max_top(t_stack **a, t_stack **b, t_oplist **op)
 {
 	int		index;
 	int		len;

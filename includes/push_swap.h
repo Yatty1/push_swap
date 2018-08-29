@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:47:54 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/28 19:39:17 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/29 11:53:41 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,8 @@ void			oplistdel(t_oplist **oplist);
 */
 
 int				create_stack(t_stack **stack, char **str, char option);
-void			error_exit(char option);
-void			free_exit(char *str, char *input, char option);
+void			error_exit(char ***av, char option);
+void			free_exit(char *str, char *input, char ***av, char option);
 
 /*
 ** push_swap funcs
@@ -149,7 +149,7 @@ char			**check_option(int *argc, char **argv, char *option);
 void			dispatcher(t_stack **a, t_stack **b, char *input,
 							char option);
 void			check(char **input, t_stack *a, char option);
-char			**read_instruction(char option);
+char			**read_instruction(char option, char ***av);
 int				is_valid(char *str);
 void			free_input(char ***input);
 

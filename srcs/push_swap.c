@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:43:21 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/28 18:50:22 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/29 12:03:23 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,23 @@ int				main(int argc, char **argv)
 {
 	t_stack		*stack;
 	char		option;
+	char		**av;
 	t_oplist	*oplist;
-	t_algos		*f;
 
 	stack = NULL;
 	oplist = NULL;
+	av = NULL;
 	if (argc < 2)
 		return (0);
 	argv = check_option(&argc, argv, &option);
 	if (((option & (LV | LC)) && argc == 1) || argc == 2)
-	{
-		if (!(argv = ft_strsplit(argv[argc - 1], ' ')))
-			error_exit(option);
-	}
+		av = ft_strsplit(argv[argc - 1], ' ');
 	else
 		argv += (option & (LV | LC)) ? 0 : 1;
-	if (!create_stack(&stack, argv, option))
-		error_exit(option);
+	if (!create_stack(&stack, av ? av : argv, option))
+		error_exit(&av, option);
 	oplist = pick_algo(stack);
 	oplist_printer(oplist);
+	free_input(&av);
 	return (0);
 }

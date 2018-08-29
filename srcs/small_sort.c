@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:14:34 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/28 18:25:09 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/29 11:39:33 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_oplist	*small_sort(t_stack *a)
 	{
 		min_top(&a, &b, &op);
 		if (is_ascending(a))
-			break;
+			break ;
 		push_b(&a, &b, &op);
 		if (is_ascending(a))
 			break ;
