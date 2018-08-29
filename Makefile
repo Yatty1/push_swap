@@ -6,7 +6,7 @@
 #    By: syamada <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/06 21:25:07 by syamada           #+#    #+#              #
-#    Updated: 2018/08/28 18:23:22 by syamada          ###   ########.fr        #
+#    Updated: 2018/08/28 19:19:30 by syamada          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,11 +101,11 @@ d$(SWAP): $(LIBDIR) $(LIBDIR)/$(LIB)
 sanitize: $(LIBDIR) $(LIBDIR)/$(LIB)
 	@printf "%b" "$(OK_COLOR)[SANITIZE MODE] "
 	@printf "%b" "$(NO_COLOR)Creating $(EXEC_COLOR)$(CHECKER)"
-	@$(CC) -o $(CHECKER) $(CFLAG) $(SANITIZER) $(CHECKERSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
+	@$(CC) -o $(CHECKER) $(DEBUG) $(CFLAG) $(SANITIZER) $(CHECKERSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
 	@printf "%b" " ✔\n"
 	@printf "%b" "$(OK_COLOR)[SANITIZE MODE] "
 	@printf "%b" "$(NO_COLOR)Creating $(EXEC_COLOR)$(SWAP)"
-	@$(CC) -o $(SWAP) $(CFLAG) $(SANITIZER) $(SWAPSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
+	@$(CC) -o $(SWAP) $(DEBUG) $(CFLAG) $(SANITIZER) $(SWAPSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
 	@printf "%b" " ✔\n"
 
 .PHONY: qc

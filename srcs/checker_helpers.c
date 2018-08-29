@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 21:08:49 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/28 16:31:56 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/28 19:50:46 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,26 @@ int		is_valid(char *str)
 }
 
 //pass stack. if error, free everything and print error exit
-char	**read_instruction(void)
+char	**read_instruction(char option)
 {
 	char	*str;
 	char	*input;
 	char	**two_d;
 
 	str = NULL;
+	two_d = NULL;
 	input = ft_strnew(1);
 	while (get_next_line(0, &str) > 0)
 	{
 		if (is_valid(str))
 			input = ft_strjoinfree_with(input, str, ',');
 		else
-		{
-			ft_strdel(&str);
-			ft_strdel(&input);
-			return (NULL);
-		}
+			free_exit(str, input, option);
 	}
-	if (!(two_d = ft_strsplit(input, ',')) || !*input)
+	if (!*input || !(two_d = ft_strsplit(input, ',')))
 	{
 		ft_strdel(&input);
+		free_input(two_d);
 		return (NULL);
 	}
 	ft_strdel(&input);
@@ -60,7 +58,10 @@ void	free_input(char **input)
 	int		i;
 
 	i = 0;
-	while (input && *input && input[i])
-		ft_strdel(&input[i++]);
-	free(input);
+	if (input && *input)
+	{
+		while (input && *input && input[i])
+			ft_strdel(&input[i++]);
+		free(input);
+	}
 }

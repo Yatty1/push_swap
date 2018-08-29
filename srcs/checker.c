@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 11:10:22 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/28 18:28:42 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/28 19:50:46 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	check(char **input, t_stack *a, char option)
 		if (sorted->data > sorted->next->data)
 		{
 			ft_stackdel(&a);
-			ft_stackdel(&b);
 			free_input(input);
 			option & LC ? ft_putstrerr("\033[1;33mKO\n")
 				: ft_putstrerr("\033[0;37mKO\n");
@@ -71,26 +70,29 @@ void	check(char **input, t_stack *a, char option)
 int		main(int argc, char **argv)
 {
 	char		**input;
+	char		**av;
 	char		option;
 	t_stack		*stack;
 
 	stack = NULL;
-	input = NULL;
+	av = NULL;
 	if (argc < 2)
 		return (0);
 	argv = check_option(&argc, argv, &option);
 	if (((option & (LV | LC)) && argc == 1) || argc == 2)
 	{
-		if (!(argv = ft_strsplit(argv[argc - 1], ' ')))
+		if (!(av = ft_strsplit(argv[argc - 1], ' ')))
 			error_exit(option);
 	}
 	else
 		argv += (option & (LV | LC)) ? 0 : 1;
-	if (!create_stack(&stack, argv, option))
+	if (!create_stack(&stack, av ? av : argv, option))
 		error_exit(option);
-	input = read_instruction();
+	input = read_instruction(option);
 	check(input, stack, option);
 	(option & LC) ? ft_putstr("\033[1;32mOK\n") : ft_putstr("OK\n");
 	free_input(input);
+	free_input(av);
+	while (1);
 	return (0);
 }
