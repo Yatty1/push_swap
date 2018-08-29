@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:14:34 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/28 18:07:52 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/28 18:25:09 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int			min_index(t_stack *stack, int *index)
 	return (i);
 }
 
-void		get_min(t_stack **a, t_stack **b, t_oplist **op)
+void		min_top(t_stack **a, t_stack **b, t_oplist **op)
 {
 	int		index;
 	int		len;
@@ -64,7 +64,7 @@ t_oplist	*small_sort(t_stack *a)
 		swap_a(&a, &b, &op);
 	while (!is_ascending(a) || !is_descending(b) || (a->data < b->data))
 	{
-		get_min(&a, &b, &op);
+		min_top(&a, &b, &op);
 		if (is_ascending(a))
 			break;
 		push_b(&a, &b, &op);

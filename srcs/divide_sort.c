@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 16:21:38 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/28 18:17:19 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/28 18:18:21 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ t_oplist	*divide_sort(t_stack *a)
 
 	b = NULL;
 	op = NULL;
-	if (is_ascending(a))
-		return (NULL);
 	init_object(&ob, a);
 	while (ob->i_target < ob->len)
 	{
