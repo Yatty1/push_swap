@@ -42,8 +42,16 @@ typedef enum	e_op
 typedef struct	s_max
 {
 	int		value;
-	int		index;
+	int		i;
 }				t_max;
+
+typedef struct	s_maxob
+{
+	t_max	max;
+	t_max	s_max;
+	int		index;
+	int		sec_i;
+}				t_maxob;
 
 typedef	struct	s_oplist
 {

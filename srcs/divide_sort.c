@@ -88,7 +88,6 @@ t_oplist	*divide_sort(t_stack *a)
 	while (b)
 	{
 		max_top(&a, &b, &op);
-		push_a(&a, &b, &op);
 //		if (a && b)
 //			printf("a: %d, b: %d\n", a->data, b->data);
 		if (a && a->next && (a->data > a->next->data))
