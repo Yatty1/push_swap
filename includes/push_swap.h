@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:47:54 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/29 11:53:41 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/30 22:15:50 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct	s_object
 	int			inc;
 	int			i_target;
 	int			target;
+	int			sec_target;
 	int			offset;
 	t_op		op;
 }				t_object;

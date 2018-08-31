@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 16:21:38 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/28 19:21:00 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/30 22:15:49 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void		init_object(t_object **ob, t_stack *a)
 	(*ob)->inc = (*ob)->len < 250 ? (*ob)->len / 5 : (*ob)->len / 15;
 	(*ob)->i_target = (*ob)->inc - 1;
 	(*ob)->target = (*ob)->arr[(*ob)->i_target];
+	(*ob)->sec_target = (*ob)->arr[(*ob)->i_target + (*ob)->inc];
 	(*ob)->offset = (*ob)->len;
 	(*ob)->op = RA;
 }
@@ -88,6 +89,8 @@ t_oplist	*divide_sort(t_stack *a)
 	{
 		max_top(&a, &b, &op);
 		push_a(&a, &b, &op);
+		if (a->data > a->next->data)
+			swap_a(&a, &b, &op);
 	}
 	ft_stackdel(&a);
 	ft_stackdel(&b);
