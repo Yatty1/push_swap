@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 16:02:48 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/30 22:15:48 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/31 13:00:16 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,57 +38,45 @@ int		is_descending(t_stack *stack)
 	return (1);
 }
 
-int		get_max(t_stack *stack)
-{
-	int		max;
-
-	max = stack->data;
-	while (stack)
-	{
-		if (max < stack->data)
-			max = stack->data;
-		stack = stack->next;
-	}
-	return (max);
-}
-
-int		max_index(t_stack *stack, int *index)
+int		optimize_max_index(t_stack *stack, int *index)
 {
 	int		i;
-	int		max;
+	t_max	max;
+	t_max	s_max;
 	int		tmp;
 
 	i = 0;
-	*index = i;
-	max = stack->data;
+	max.index = i;
+	max.value = stack->data;
+	s_max.index = i;
+	s_max.value = stack->data;
 	while (stack)
 	{
-		if ((tmp = stack->data) > max)
+		if ((tmp = stack->data) > max.value)
 		{
-			max = tmp;
-			*index = i;
+			s_max.index = max.index;
+			s_max.value = max.value;
+			max.value = tmp;
+			max.index = i;
 		}
 		stack = stack->next;
 		i++;
 	}
+	*index = s_max.index != 0 && ABS_MID(max.index, i) < ABS_MID(s_max.index, i) ? max.index : s_max.index;
 	return (i);
 }
 
+
+//process up to two moves. max and second max
 void	max_top(t_stack **a, t_stack **b, t_oplist **op)
 {
-	int		index;
-	int		len;
+	int			index;
+	int			len;
+	t_object	ob;
 
-	len = max_index(*b, &index);
-	if (index > len / 2)
-	{
-		len -= index;
-		while (len--)
-			rev_rotate_b(a, b, op);
-	}
-	else
-	{
-		while (index--)
-			rotate_b(a, b, op);
-	}
+	len = optimize_max_index(*b, &index);
+	ob.op = (index < len / 2) ? RB : RRB;
+	ob.offset = ABS_MID(index, len);
+	while (ob.offset--)
+		ob.op == RB ? rotate_b(a, b, op) : rev_rotate_b(a, b, op);
 }

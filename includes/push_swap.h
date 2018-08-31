@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:47:54 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/30 22:15:50 by syamada          ###   ########.fr       */
+/*   Updated: 2018/08/31 13:00:17 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 
 # define ABS_MID(x, len) ((x < (len / 2)) ? x : len - x)
 # define ALGO_NUM 2
-# define LC 1
-# define LV 2
+# define LC 0x01
+# define LV 0x02
 
 typedef enum	e_op
 {
@@ -38,6 +38,12 @@ typedef enum	e_op
 	RRB,
 	RRR
 }				t_op;
+
+typedef struct	s_max
+{
+	int		value;
+	int		index;
+}				t_max;
 
 typedef	struct	s_oplist
 {
