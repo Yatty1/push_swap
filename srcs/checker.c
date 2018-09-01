@@ -92,5 +92,6 @@ int		main(int argc, char **argv)
 	(option & LC) ? ft_putstr("\033[1;32mOK\n") : ft_putstr("OK\n");
 	free_input(&input);
 	free_input(&av);
+	while (1);
 	return (0);
 }

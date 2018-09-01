@@ -19,9 +19,9 @@
 # include <unistd.h>
 
 # define ABS_MID(x, len) ((x < (len / 2)) ? x : len - x)
-# define ALGO_NUM 2
 # define LC 0x01
 # define LV 0x02
+# define LT 0x04
 
 typedef enum	e_op
 {
@@ -77,8 +77,6 @@ typedef struct	s_object
 	t_op		op;
 }				t_object;
 
-typedef t_oplist	*(*t_algos)(t_stack *);
-
 /*
 ** operation funcs
 */
@@ -108,7 +106,7 @@ int				ft_searchstack(t_stack *stack, int target);
 void			print_stack(t_stack *stack);
 void			stack_status(t_stack *a, t_stack *b, char *inst);
 int				stack_len(t_stack *stack);
-int				is_stackempty(t_stack *stack);
+int				search_index(t_stack *stack, int target);
 t_stack			*copy_stack(t_stack *stack);
 
 /*
@@ -149,7 +147,7 @@ t_oplist		*small_sort(t_stack *a);
 
 int				is_ascending(t_stack *stack);
 int				is_descending(t_stack *stack);
-int				max_index(t_stack *stack, int *index);
+int				max_index(t_stack *stack, t_maxob *mob);
 int				min_index(t_stack *stack, int *index);
 void			max_top(t_stack **a, t_stack **b, t_oplist **op);
 void			min_top(t_stack **a, t_stack **b, t_oplist **op);

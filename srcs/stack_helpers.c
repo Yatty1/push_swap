@@ -42,10 +42,22 @@ int			ft_searchstack(t_stack *stack, int target)
 	return (0);
 }
 
-int			is_stackempty(t_stack *stack)
+int		search_index(t_stack *stack, int target)
 {
-	return (stack ? 0 : 1);
+	int		i;
+
+	i = 0;
+	while (stack)
+	{
+		if (stack->data == target)
+			return (i);
+		stack = stack->next;
+		i++;
+	}
+	return (-1);
 }
+
+
 
 int			stack_len(t_stack *stack)
 {
