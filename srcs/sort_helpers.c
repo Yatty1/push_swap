@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 16:02:48 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/31 13:00:16 by syamada          ###   ########.fr       */
+/*   Updated: 2018/09/01 10:51:49 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void		set_max(t_maxob *mob, int new_max, int index)
 	mob->max.i = index;
 }
 
-int		optimize_max_index(t_stack *stack, t_maxob *mob)
+int				optimize_max_index(t_stack *stack, t_maxob *mob)
 {
 	int		i;
 
@@ -67,12 +67,13 @@ int		optimize_max_index(t_stack *stack, t_maxob *mob)
 		stack = stack->next;
 		i++;
 	}
-	mob->index = mob->s_max.i != 0 && ABS_MID(mob->max.i, i) < ABS_MID(mob->s_max.i, i) ? mob->max.i : mob->s_max.i;
+	mob->index = mob->s_max.i != 0 && ABS_MID(mob->max.i, i)
+		< ABS_MID(mob->s_max.i, i) ? mob->max.i : mob->s_max.i;
 	mob->sec_i = mob->index == mob->max.i ? -1 : mob->max.i;
 	return (i);
 }
 
-void	max_top(t_stack **a, t_stack **b, t_oplist **op)
+void			max_top(t_stack **a, t_stack **b, t_oplist **op)
 {
 	t_maxob		mob;
 	t_object	ob;

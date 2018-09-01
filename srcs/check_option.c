@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/10 12:40:44 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/28 18:30:14 by syamada          ###   ########.fr       */
+/*   Updated: 2018/09/01 10:50:20 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	is_validoption(char c)
 	return (0);
 }
 
-char	**check_option(int *argc, char **argv, char *option)
+char		**check_option(int *argc, char **argv, char *option)
 {
 	int		i;
 

@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 16:21:38 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/31 13:00:17 by syamada          ###   ########.fr       */
+/*   Updated: 2018/09/01 10:50:33 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ t_oplist	*divide_sort(t_stack *a)
 	while (b)
 	{
 		max_top(&a, &b, &op);
-//		if (a && b)
-//			printf("a: %d, b: %d\n", a->data, b->data);
 		if (a && a->next && (a->data > a->next->data))
 			swap_a(&a, &b, &op);
 	}
