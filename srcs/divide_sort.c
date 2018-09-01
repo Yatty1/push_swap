@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 16:21:38 by syamada           #+#    #+#             */
-/*   Updated: 2018/09/01 11:21:22 by syamada          ###   ########.fr       */
+/*   Updated: 2018/09/01 12:12:49 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,15 @@ void		get_target(t_stack **a, t_stack **b, t_oplist **op, t_object *ob)
 		ob->op == RA ? rotate_a(a, b, op) : rev_rotate_a(a, b, op);
 	ob->offset = ob->len;
 }
+
+/*
+** optimization could be searching second target while pushing first target
+** to b. Every time a number that is bigger than first target and less than or
+** equal to second target is pushed to b, rotate_b to put it at the end
+** of the stack. After all numbers that are less than or equal to first 
+** target is pushed to b, rev_rotate_b to get back all numbers bigger than
+** first target and less than or equal to second target.
+*/
 
 void		rough_sort_push(t_stack **a, t_stack **b, t_oplist **op,
 							t_object *ob)
