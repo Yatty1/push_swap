@@ -6,13 +6,13 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 16:02:48 by syamada           #+#    #+#             */
-/*   Updated: 2018/09/01 10:51:49 by syamada          ###   ########.fr       */
+/*   Updated: 2018/09/01 11:23:10 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		is_ascending(t_stack *stack)
+int				is_ascending(t_stack *stack)
 {
 	if (!stack)
 		return (0);
@@ -25,7 +25,7 @@ int		is_ascending(t_stack *stack)
 	return (1);
 }
 
-int		is_descending(t_stack *stack)
+int				is_descending(t_stack *stack)
 {
 	if (!stack)
 		return (0);

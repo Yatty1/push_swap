@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:47:54 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/31 13:00:17 by syamada          ###   ########.fr       */
+/*   Updated: 2018/09/01 11:21:11 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,6 @@ void			free_exit(char *str, char *input, char ***av, char option);
 ** push_swap funcs
 */
 
-int				count_steps(t_oplist *oplist);
 t_oplist		*pick_algo(t_stack *a);
 void			rough_sort_push(t_stack **a, t_stack **b, t_oplist **op, t_object *ob);
 void			init_object(t_object **ob, t_stack *a);

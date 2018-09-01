@@ -6,13 +6,13 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 11:10:22 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/29 12:06:42 by syamada          ###   ########.fr       */
+/*   Updated: 2018/09/01 11:30:22 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	dispatcher(t_stack **a, t_stack **b, char *input, char option)
+void			dispatcher(t_stack **a, t_stack **b, char *input, char option)
 {
 	if (ft_strequ("sa", input))
 		swap_a(a, b, NULL);
@@ -40,7 +40,7 @@ void	dispatcher(t_stack **a, t_stack **b, char *input, char option)
 		stack_status(*a, *b, input);
 }
 
-void	check(char **input, t_stack *a, char option)
+void			check(char **input, t_stack *a, char option)
 {
 	int		i;
 	t_stack *b;
@@ -68,7 +68,17 @@ void	check(char **input, t_stack *a, char option)
 	ft_stackdel(&a);
 }
 
-int		main(int argc, char **argv)
+static int		count_steps(char **input)
+{
+	int		i;
+
+	i = 0;
+	while (input[i])
+		i++;
+	return (i);
+}
+
+int				main(int argc, char **argv)
 {
 	char		**input;
 	char		**av;
@@ -90,6 +100,7 @@ int		main(int argc, char **argv)
 	input = read_instruction(option, &av);
 	check(input, stack, option);
 	(option & LC) ? ft_putstr("\033[1;32mOK\n") : ft_putstr("OK\n");
+	(option & LT) ? ft_printf("\033[m %d steps\n", count_steps(input)) : 0;
 	free_input(&input);
 	free_input(&av);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 15:43:21 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/31 12:28:38 by syamada          ###   ########.fr       */
+/*   Updated: 2018/09/01 11:30:33 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,22 @@ static void		oplist_printer(t_oplist *oplist)
 		oplist = oplist->next;
 	}
 	oplistdel(&oplist);
+}
+
+t_oplist		*pick_algo(t_stack *stack)
+{
+	int			len;
+	t_oplist	*op;
+
+	op = NULL;
+	len = stack_len(stack);
+	if (is_ascending(stack))
+		return (op);
+	if (len < 30)
+		op = small_sort(stack);
+	else
+		op = divide_sort(stack);
+	return (op);
 }
 
 int				main(int argc, char **argv)
