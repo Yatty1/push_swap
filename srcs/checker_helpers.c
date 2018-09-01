@@ -58,6 +58,8 @@ void	free_input(char ***input)
 	char	**tmp;
 
 	i = 0;
+	if (input == NULL || *input == NULL)
+		return ;
 	tmp = *input;
 	if (tmp && *tmp)
 	{

@@ -121,7 +121,7 @@ qs:
 	@make $(SWAP)
 
 .PHONY: quick
-quick: qs qc
+quick: qc qs
 
 .PHONY: rec
 rec: fclean $(CHECKER)

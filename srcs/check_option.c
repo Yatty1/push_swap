@@ -6,28 +6,35 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/10 12:40:44 by syamada           #+#    #+#             */
-/*   Updated: 2018/08/28 18:30:14 by syamada          ###   ########.fr       */
+/*   Updated: 2018/09/01 10:50:20 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	**check_option(int *argc, char **argv, char *option)
+static int	is_validoption(char c)
+{
+	if (c == 'v' || c == 'c' || c == 't')
+		return (1);
+	return (0);
+}
+
+char		**check_option(int *argc, char **argv, char *option)
 {
 	int		i;
 
 	i = 1;
-	if (*argc < 2)
+	if (*argc < 2 || argv[1][0] != '-')
 		return (argv);
-	if (ft_strequ("-v", argv[i]))
-		*option |= LV;
-	else if (ft_strequ("-c", argv[i]))
-		*option |= LC;
-	else if (ft_strequ("-cv", argv[i]) || ft_strequ("-vc", argv[i]))
+	while (argv[1][i])
 	{
-		*option |= LC;
-		*option |= LV;
+		if (!is_validoption(argv[1][i]))
+			error_exit(NULL, *option);
+		i++;
 	}
+	*option |= ft_strchr(argv[1], 'v') ? LV : 0;
+	*option |= ft_strchr(argv[1], 'c') ? LC : 0;
+	*option |= ft_strchr(argv[1], 't') ? LT : 0;
 	if (*option & (LV | LC))
 	{
 		argv += 2;
