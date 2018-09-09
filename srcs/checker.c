@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 11:10:22 by syamada           #+#    #+#             */
-/*   Updated: 2018/09/01 11:30:22 by syamada          ###   ########.fr       */
+/*   Updated: 2018/09/09 16:36:55 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,10 @@ int				main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	argv = check_option(&argc, argv, &option);
-	if (((option & (LV | LC)) && argc == 1) || argc == 2)
+	if (((option & (LV | LC | LT)) && argc == 1) || argc == 2)
 		av = ft_strsplit(argv[argc - 1], ' ');
 	else
-		argv += (option & (LV | LC)) ? 0 : 1;
+		argv += (option & (LV | LC | LT)) ? 0 : 1;
 	if (!create_stack(&stack, av ? av : argv, option))
 		error_exit(&av, option);
 	input = read_instruction(option, &av);
