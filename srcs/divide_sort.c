@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 16:21:38 by syamada           #+#    #+#             */
-/*   Updated: 2018/09/01 12:12:49 by syamada          ###   ########.fr       */
+/*   Updated: 2018/09/09 17:43:06 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_object	*closest_target(t_stack *stack, t_object *ob)
 	tmp = 0;
 	while (stack)
 	{
-		if (stack->data <= ob->target)
+		if (stack->data <= ob->sec_target)
 		{
 			if ((tmp = ABS_MID(i, ob->len)) < ob->offset)
 			{
@@ -52,18 +52,40 @@ void		get_target(t_stack **a, t_stack **b, t_oplist **op, t_object *ob)
 ** first target and less than or equal to second target.
 */
 
+int			is_existing(t_stack *stack, t_object *ob)
+{
+	while (stack)
+	{
+		if (stack->data <= ob->target)
+			return (1);
+		stack = stack->next;
+	}
+	return (0);
+}
+
 void		rough_sort_push(t_stack **a, t_stack **b, t_oplist **op,
 							t_object *ob)
 {
 	int		i;
+	int		rot;
 
 	ob->target = ob->arr[ob->i_target];
+	if (ob->i_target + ob->inc < ob->len)
+		ob->sec_target = ob->arr[ob->i_target + ob->inc];
 	i = ob->inc;
-	while (i--)
+	rot = 0;
+	while (is_existing(*a, ob))
 	{
 		get_target(a, b, op, ob);
 		push_b(a, b, op);
+		if ((*b)->data > ob->target)
+		{
+			rotate_b(a, b, op);
+			rot++;
+		}
 	}
+	while (rot--)
+		rev_rotate_b(a, b, op);
 }
 
 void		init_object(t_object **ob, t_stack *a)
