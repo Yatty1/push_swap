@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/10 12:40:44 by syamada           #+#    #+#             */
-/*   Updated: 2018/09/11 13:30:26 by syamada          ###   ########.fr       */
+/*   Updated: 2018/09/11 14:11:26 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,28 @@ static int	is_validoption(char c)
 	return (0);
 }
 
+static int contain_num(char *str)
+{
+	while (*str)
+	{
+		if (ft_isdigit(*str++))
+			return (1);
+	}
+	return (0);
+}
+
 char		**check_option(int *argc, char **argv, char *option)
 {
 	int		i;
 
 	i = 1;
-	if (*argc < 2 || argv[1][0] != '-')
+	if (*argc < 2 || argv[1][0] != '-' || ft_strequ(argv[1], "-")
+			|| contain_num(argv[1]))
 		return (argv);
 	while (argv[1][i])
 	{
 		if (!is_validoption(argv[1][i]))
+			//problem
 			error_exit(NULL, *option);
 		i++;
 	}
