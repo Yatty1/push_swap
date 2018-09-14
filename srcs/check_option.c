@@ -6,7 +6,7 @@
 /*   By: syamada <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/10 12:40:44 by syamada           #+#    #+#             */
-/*   Updated: 2018/09/11 14:11:26 by syamada          ###   ########.fr       */
+/*   Updated: 2018/09/13 22:10:14 by syamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	is_validoption(char c)
 	return (0);
 }
 
-static int contain_num(char *str)
+static int	contain_num(char *str)
 {
 	while (*str)
 	{
@@ -40,7 +40,6 @@ char		**check_option(int *argc, char **argv, char *option)
 	while (argv[1][i])
 	{
 		if (!is_validoption(argv[1][i]))
-			//problem
 			error_exit(NULL, *option);
 		i++;
 	}
