@@ -97,17 +97,6 @@ d$(SWAP): $(LIBDIR) $(LIBDIR)/$(LIB)
 	@$(CC) -o $@ $(CFLAG) $(DEBUG) $(SWAPSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
 	@printf "%b" " ✔\n"
 
-.PHONY: sanitize
-sanitize: $(LIBDIR) $(LIBDIR)/$(LIB)
-	@printf "%b" "$(OK_COLOR)[SANITIZE MODE] "
-	@printf "%b" "$(NO_COLOR)Creating $(EXEC_COLOR)$(CHECKER)"
-	@$(CC) -o $(CHECKER) $(CFLAG) $(SANITIZER) $(CHECKERSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
-	@printf "%b" " ✔\n"
-	@printf "%b" "$(OK_COLOR)[SANITIZE MODE] "
-	@printf "%b" "$(NO_COLOR)Creating $(EXEC_COLOR)$(SWAP)"
-	@$(CC) -o $(SWAP) $(CFLAG) $(SANITIZER) $(SWAPSRC) $(OPSRCS) $(OTHERSRCS) -I$(INCDIR) -L$< -lft
-	@printf "%b" " ✔\n"
-
 .PHONY: qc
 qc:
 	@printf "%b" "$(NO_COLOR)Quick recompile for $(CHECKER)\n"
